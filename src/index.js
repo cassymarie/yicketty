@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import * as fetch from './fetchRequests'
+// import reportWebVitals from './reportWebVitals';
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,8 +12,13 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+  
+// const getPlayers = fetch.getBy('players')(144,2018)
+// const getTeams = fetch.getBy('teams')(2020)
+const getStats = fetch.getBy('stats')('career')('hitter',660670)
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// const players = fetch.getData(getPlayers)
+// const teams = fetch.getData(getTeams)
+// const getPlayer = fetch.getBy('player')(660670)
+// const player = fetch.getData(getPlayer)
+const stats = fetch.getData(getStats)
