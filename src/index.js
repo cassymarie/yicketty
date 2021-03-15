@@ -24,3 +24,10 @@ ReactDOM.render(
 // const stats = fetch.getData(getStats)
 
 fetch.getData(fetch.getQuery('player')(660670))
+
+// fetch('http://localhost:3000/profile', {
+//   method: 'GET',
+//   headers: {
+//     Authorization: `Bearer <token>`
+//   }
+// }) 
