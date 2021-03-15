@@ -2,16 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as fetch from './fetchRequests'
-// import reportWebVitals from './reportWebVitals';
+import * as fetch from './components/fetchRequests'
+import manageReducers from './reducers/reducer.js'
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+const store = createStore(manageReducers);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+document.getElementById('root')
 );
+
   
 // const getPlayers = fetch.getQuery('players')(144,2018)
 // const getTeams = fetch.getQuery('teams')(2020)

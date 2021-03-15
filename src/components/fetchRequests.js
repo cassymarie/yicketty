@@ -51,7 +51,7 @@ export const getQuery = (type) => {
                     switch (statType){
                         case 'projected':
                             return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}`
-                        case 'career','league':
+                        case 'career' || 'league':
                             return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}&game_type=${game_type}`
                         case 'season':
                             return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}&season=${season}`
@@ -67,8 +67,6 @@ export const getQuery = (type) => {
     }
 }
 
-
-
 export function getData(query){
     const regex = baseUrl.replace(new RegExp('/', 'g'), '\/') + `(.*)[.]`;
     const find = query.match(regex)[1]
@@ -78,15 +76,12 @@ export function getData(query){
     .then(json => { 
         const data = json[find].queryResults.row
         console.log(`${find}:`, data)
-        // debugger
         handleData(find, data)
-        // return data
     })
 }
 
-
 function handleData(topic, data){
-    debugger
+    // debugger
     // switch(topic){
     //     case 
     // }
