@@ -13,12 +13,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
   
-// const getPlayers = fetch.getBy('players')(144,2018)
-// const getTeams = fetch.getBy('teams')(2020)
-const getStats = fetch.getBy('stats')('career')('hitter',660670)
+// const getPlayers = fetch.getQuery('players')(144,2018)
+// const getTeams = fetch.getQuery('teams')(2020)
+// const getStats = fetch.getQuery('stats')('career')('hitter',660670)
 
 // const players = fetch.getData(getPlayers)
 // const teams = fetch.getData(getTeams)
-// const getPlayer = fetch.getBy('player')(660670)
+// const getPlayer = fetch.getQuery('player')(660670)
 // const player = fetch.getData(getPlayer)
-const stats = fetch.getData(getStats)
+// const stats = fetch.getData(getStats)
+
+fetch.getData(fetch.getQuery('player')(660670))

@@ -1,3 +1,4 @@
+const baseUrl = `https://mlb-data.p.rapidapi.com/json/named.`
 const configObj = {
     method: "GET",
     headers: {
@@ -7,31 +8,30 @@ const configObj = {
         "Accept": "application/json"
     }}
 
-const baseUrl = `https://mlb-data.p.rapidapi.com/json/named.`
-
 const queryTopic = {
     teams: 'team_all_season',
     players: 'roster_team_alltime',
     playerSearch: 'search_player_all',
+    playerTeams: 'player_teams',
     player: 'player_info',
     stats: {
         pitcher: {
-            projected: 'proj_pecota_pitching', // player_id='592789'&league_list_id='mlb'&season='2017'
-            career: 'sport_career_pitching', // player_id='592789'&league_list_id='mlb'&game_type='R'
-            league: 'sport_career_pitching_lg', // league_list_id='mlb'&game_type='R'&player_id='592789'
-            season: 'sport_pitching_tm' // season='2017'&player_id='592789'&league_list_id='mlb'&game_type='R'
+            projected: 'proj_pecota_pitching', 
+            career: 'sport_career_pitching', 
+            league: 'sport_career_pitching_lg', 
+            season: 'sport_pitching_tm'
         },
         hitter: {
-            projected: 'proj_pecota_batting', // player_id='592789'&league_list_id='mlb'&season='2017''
-            career: 'sport_career_hitting', // player_id='592789'&game_type='R'&league_list_id='mlb'"
-            league: 'sport_career_hitting_lg', // league_list_id='mlb'&game_type='R'&player_id='592789'
-            season: 'sport_hitting_tm' // season='2017'&player_id='493316'&league_list_id='mlb'&game_type='R'
+            projected: 'proj_pecota_batting', 
+            career: 'sport_career_hitting', 
+            league: 'sport_career_hitting_lg', 
+            season: 'sport_hitting_tm'
         }
     },
     games: 'org_game_type_date_info'
 }
 
-export const getBy = (type) => {
+export const getQuery = (type) => {
     const queryType = queryTopic[type]
     switch (type){
         case 'teams':
@@ -41,23 +41,32 @@ export const getBy = (type) => {
         case 'playerSearch':
             return (name_part, active=true) => {
                 let activeStatus = (active) ? 'Y' : 'N'
-                return `${baseUrl}${queryType}.bam?sport_code='mlb'&name_part=${name_part}&active_sw=${activeStatus}`
-            }
+                return `${baseUrl}${queryType}.bam?sport_code='mlb'&name_part=${name_part}&active_sw=${activeStatus}`}
         case 'player':
             return (player_id) => `${baseUrl}${queryType}.bam?sport_code='mlb'&player_id=${player_id}`
         case 'stats':
             return (statType) => {
-                return (position, player_id) => {
+                return (position, player_id, season='2020', game_type='R') => {
                     let searchby = queryTopic[type][position][statType]
-                    return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}`}
-            }
+                    switch (statType){
+                        case 'projected':
+                            return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}`
+                        case 'career','league':
+                            return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}&game_type=${game_type}`
+                        case 'season':
+                            return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}&season=${season}`
+                        default:
+                            return `${baseUrl}${searchby}.bam?sport_code='mlb'&player_id=${player_id}`
+                    }
+                }}
         case 'games':
-            //Example: 'L' 'R' - Regular Season 'S' - Spring Training 'E' - Exhibition 'A' - All Star Game 'D' - Division Series 'F' - First Round (Wild Card) 'L' - League Championship 'W' - World Series
+            //'R'-'Regular Season 'S'-'Spring Training 'E'-'Exhibition 'A'-'All Star Game 'D'-'Division Series 'F'-'First Round (Wild Card) 'L'-'League Championship 'W'-'World Series
             return (season='2020', game_type='R') => `${baseUrl}${queryType}.bam?game_type=${game_type}&season=${season}`
         default:
             return ''
     }
 }
+
 
 
 export function getData(query){
@@ -69,7 +78,17 @@ export function getData(query){
     .then(json => { 
         const data = json[find].queryResults.row
         console.log(`${find}:`, data)
-        debugger
-        return data
+        // debugger
+        handleData(find, data)
+        // return data
     })
 }
+
+
+function handleData(topic, data){
+    debugger
+    // switch(topic){
+    //     case 
+    // }
+}
+
