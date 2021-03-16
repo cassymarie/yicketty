@@ -1,8 +1,9 @@
 const baseUrl = `https://mlb-data.p.rapidapi.com/json/named.`
+
 const configObj = {
     method: "GET",
     headers: {
-        "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+        "x-rapidapi-key": process.env['REACT_APP_RAPID_API_KEY'],
         "x-rapidapi-host": "mlb-data.p.rapidapi.com",
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -35,15 +36,15 @@ export const getQuery = (type) => {
     const queryType = queryTopic[type]
     switch (type){
         case 'teams':
-            return  (season) => `${baseUrl}${queryType}.bam?season=${season}&all_star_sw='N'&sort_order=name_asc`
+            return  (season='2020') => `${baseUrl}${queryType}.bam?season='${season}'&all_star_sw='N'&sort_order=name_asc`
         case 'players':
             return (team_id, start_season='2020',end_season='2020',) => `${baseUrl}${queryType}.bam?end_season=${end_season}&team_id=${team_id}&start_season=${start_season}&all_star_sw='N'`
         case 'playerSearch':
             return (name_part, active=true) => {
                 let activeStatus = (active) ? 'Y' : 'N'
-                return `${baseUrl}${queryType}.bam?sport_code='mlb'&name_part=${name_part}&active_sw=${activeStatus}`}
+                return `${baseUrl}${queryType}.bam?sport_code='mlb'&name_part='${name_part}'&active_sw=${activeStatus}`}
         case 'player':
-            return (player_id) => `${baseUrl}${queryType}.bam?sport_code='mlb'&player_id=${player_id}`
+            return (player_id) => `${baseUrl}${queryType}.bam?sport_code='mlb'&player_id='${player_id}'`
         case 'stats':
             return (statType) => {
                 return (position, player_id, season='2020', game_type='R') => {
@@ -68,22 +69,25 @@ export const getQuery = (type) => {
 }
 
 export function getData(query){
-    const regex = baseUrl.replace(new RegExp('/', 'g'), '\/') + `(.*)[.]`;
-    const find = query.match(regex)[1]
 
+    const regex = `${baseUrl.replace(new RegExp('/', 'g'), '\\/')}(.*)[.]`
+    const find = query.match(regex)[1]
+    
     fetch(query, configObj)
     .then(response => response.json())
     .then(json => { 
         const data = json[find].queryResults.row
-        console.log(`${find}:`, data)
-        handleData(find, data)
+        if (find === 'team_all_season'){
+            const mlb = data.filter(team => team.sport_code === "mlb")
+            console.log(`MLB Teams`, mlb)
+            return mlb
+        } else {
+            console.log(`${find}:`, data)
+            return data
+        }
     })
-}
-
-function handleData(topic, data){
-    // debugger
-    // switch(topic){
-    //     case 
-    // }
+    .catch(err => {
+        console.error(err);
+    });
 }
 
