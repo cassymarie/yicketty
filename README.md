@@ -10,17 +10,17 @@ Yicketty uses [Yak](https://github.com/cassymarie/yak) repository for the backen
 
 This project serves as the final project from the online Software Engineering course.  Below are the basic requirements that need to be met.
 
-- [] The code should be written in ES6 as much as possible
+- [ ] The code should be written in ES6 as much as possible
 - [x] Use the [create-react-app](https://github.com/facebook/create-react-app) generator to start your project.
 - [x] Your app should have one HTML page to render your react-redux application
-- [] There should be 5 stateless components
-- [] There should be 3 routes
-- [] The Application must make use of react-router and proper RESTful routing.
+- [ ] There should be 5 stateless components
+- [ ] There should be 3 routes
+- [ ] The Application must make use of react-router and proper RESTful routing.
 - [x] Use Redux middleware to respond to and modify state change
 - [x] Make use of async actions and redux-thunk middleware to send data to and receive data from a server
-- [] Your Rails API should handle the data persistence with a database. You should be using fetch() within your actions to GET and POST data from your API - do not use jQuery methods.
-- [] Your client-side application should handle the display of data with minimal data manipulation
-- [] Your application should have some minimal styling.
+- [ ] Your Rails API should handle the data persistence with a database. You should be using fetch() within your actions to GET and POST data from your API - do not use jQuery methods.
+- [ ] Your client-side application should handle the display of data with minimal data manipulation
+- [ ] Your application should have some minimal styling.
 
 ## Available Scripts
 
