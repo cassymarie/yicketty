@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import thunk from 'redux-thunk';
-import mlbReducer from './reducers/mlbReducer.js';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import App from './App';
+import reducer from './redux/CombinedReducer';
+import './index.css';
 
-const store = createStore(mlbReducer, (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk)));
+const store = createStore(reducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store} > 
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </React.StrictMode>,
 document.getElementById('root')
 );

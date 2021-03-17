@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import Redux from 'redux';
-// import Login from './components/login/login.js';
-// import Profile from './components/profile';
-import MlbTeams from './components/mlb/MlbTeams.js'
-
-
+import MlbTeams from './containers/MlbTeams.js'
+// import { TeamCards } from './containers/TeamCards.js'
+import { connect } from 'react-redux'
+// import MlbTeams from './components/MlbTeams.js';
+import { getMlbTeams } from './redux/ActionCreators.js'
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.getMlbTeams()
+  }
+
 
   render() {
     return (
       <div className="App">
-        {/* <Login /> */}
-        <MlbTeams />
+        <h2>In the App </h2>
+          {/* <TeamCards /> */}
+          <MlbTeams />
       </div>
     );
   }
 };
 
-export default App;
-
-
-
-// import './App.css';
+export default connect(null,{ getMlbTeams })(App);
