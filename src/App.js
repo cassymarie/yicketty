@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import MlbTeams from './containers/MlbTeams.js'
-// import { TeamCards } from './containers/TeamCards.js'
 import { connect } from 'react-redux'
-// import MlbTeams from './components/MlbTeams.js';
+import { Switch, Route } from 'react-router-dom'
 import { getMlbTeams } from './redux/ActionCreators.js'
+import MlbTeams from './containers/MlbTeams.js'
+import TeamPage from './components/mlb/TeamPage.js'
+import NavBar from './containers/NavBar.js'
+// import Login from './components/Login.js'
 
 class App extends Component {
 
@@ -11,14 +13,16 @@ class App extends Component {
     this.props.getMlbTeams()
   }
 
-
   render() {
     return (
-      <div className="App">
-        <h2>In the App </h2>
-          {/* <TeamCards /> */}
-          <MlbTeams />
-      </div>
+          <div className="container-fluid">
+            <NavBar />
+            <Switch>
+              <Route path="/mlbteams/:id" component={TeamPage}/>
+              <Route path="/mlbteams" component={MlbTeams}/>
+              <Route path="/" component={MlbTeams}/>
+            </Switch>
+          </div>
     );
   }
 };

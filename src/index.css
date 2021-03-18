@@ -1,8 +1,3 @@
-body * {
-  border: 1px solid black;
-  padding: 5px;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,12 +15,18 @@ code {
     monospace;
 }
 
-.component {
-  background-color: bisque;
+.mlb-team-card {
+  border: 1px solid black;
+  text-align: center;
+  padding: 5px;
+  padding-bottom: 10px;
+  margin: 15px;
+}
+
+.mlb-card-title {
+  color: white;
+  font-size: xx-large;
+  margin: 0;
 }
 
 
-
-#root {
-  /* background-color: antiquewhite; */
-}

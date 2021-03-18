@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import TeamCard from '../components/TeamCard.js'
+import TeamCard from '../components/mlb/TeamCard.js';
 
-const TeamCards = (props) => {
-  console.log(props.teams)
-   return(
-      <div className="cards">
-        {props.teams.map(team => <TeamCard key={team.id} {...team}/>)}
+class TeamCards extends Component {
+
+  render(){
+    return(
+      <div className="row">
+        {this.props.teams.map(team => <TeamCard key={team.id} {...team}/>)}
       </div>
-   )
+    )
+  }
     
 }
 
