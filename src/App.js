@@ -14,8 +14,9 @@ class App extends Component {
   }
 
   render() {
+    const color = this.props.mlbTeam.color2 !== '' ? this.props.mlbTeam.color2 : '#34a8eb'
     return (
-          <div className="container-fluid">
+          <div className="container-fluid" style={{backgroundColor:`${color}`}}>
             <NavBar />
             <Switch>
               <Route path="/mlbteams/:id" component={TeamPage}/>
@@ -27,4 +28,9 @@ class App extends Component {
   }
 };
 
-export default connect(null,{ getMlbTeams })(App);
+const mapStateToProps = (state) => ({
+  mlbTeam: state.mlb.selectedTeam
+})
+
+
+export default connect(mapStateToProps,{ getMlbTeams })(App);

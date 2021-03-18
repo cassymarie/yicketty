@@ -26,7 +26,8 @@ code {
 .mlb-card-title {
   color: white;
   font-size: xx-large;
-  margin: 0;
+  margin: 0px;
+  margin-bottom: 5px;
 }
 
 

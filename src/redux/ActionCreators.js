@@ -3,16 +3,25 @@ const API = "http://localhost:3000"
 export const addMlbTeams = () => ({type: 'MLB_TEAMS'})
 export const getMlbTeams = () => {
     return (dispatch) => {
-      fetch(`${API}//mlb/teams`)
+      fetch(`${API}/mlb/teams`)
         .then(response => response.json())
         .then(mlb => dispatch({ type: 'SET_MLB_TEAMS', payload: mlb }));
     };
   } 
+export const setSelectedTeam = (id) => {
+  return (dispatch) => {
+    fetch(`${API}/mlb/teams/${id}`)
+      .then(response => response.json())
+      .then(selectedTeam => dispatch({ type: 'SET_SELECTED_TEAM', payload: selectedTeam }));
+  };
+} 
+export const unSelectTeam = () => ({type: 'UNSELECT_TEAM'})
+
 export const setTeamRoster = (id) => {
   return (dispatch) => {
-    fetch(`${API}/mlb/team/${id}/roster`)
+    fetch(`${API}/mlb/teams/${id}/roster`)
       .then(response => response.json())
-      .then(roster => dispatch({ type: 'SET_TEAM_ROSTER', payload: roster }));
+      .then(teamRoster => dispatch({ type: 'SET_TEAM_ROSTER', payload: teamRoster}));
   };
 }
 export const getPlayerSeasonStats = (id) => {

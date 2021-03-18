@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 class NavBar extends Component {
     render(){
         return (
-                <div className="navbar navbar-default">
-                </div>
+            <div className="navbar navbar-default">
+            </div>
         )
     }
 }
