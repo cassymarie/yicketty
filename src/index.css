@@ -8,11 +8,22 @@ body {
   width: 100%;
   border: none;
   height: 100%;
+
+}
+
+#root {
+  padding: 0px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.login {
+  border: 1px solid black;
+  padding: 20px;
+  text-align: center;
 }
 
 .mlb-team-card {
@@ -30,4 +41,6 @@ code {
   margin-bottom: 5px;
 }
 
-
+.app {
+  padding: 15px;
+}

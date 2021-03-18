@@ -1,77 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { addNewUser, toggleSignup } from "../../redux/UserActionCreators.js"
+import { connect } from 'react-redux';
 
-class Login extends Component {
+const Login = (props) => {
 
-  state = {
-    existing: false,
-    first_name: '',
-    last_name: '',
-    email: '',
-    provider: 'email',
-  }
+  const { signup, toggleSignup } = props
 
-  handleFirstNameChange = event => {
-    this.setState({
-      first_name: event.target.value
-    })
-  }
-  handleLastNameChange = event => {
-    this.setState({
-      last_name: event.target.value
-    })
-  }
-  handleEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    })
-  }
-
-  handleGoogle = event => {
-    debugger
-    this.setState({ provider: 'google' })
-  }
-
-
-  signup_form = () => {
-    return (
+  return(
     <>
-    <form onSubmit={e => this.handleSignEmail(e)}>
-      <h2> Sign Up </h2>
-      <input type="text" onChange={e => this.handleFirstNameChange(e)} value={this.state.first_name} placeholder="First name"></input>
-      <input type="text" onChange={e => this.handleLastNameChange(e)} value={this.state.last} placeholder="Last name"></input>
-      <input type="email" onChange={e => this.handleEmailChange(e)} value={this.state.email} placeholder="youEmail@example.com"></input>
-      <input type="password" placeholder="password"></input>
-      <input type="submit"></input>
-    </form>
-    <button onClick={e => this.handleGoogle(e)}> Google Login </button>
-    </>
-    )
-  }
-
-
-  login_form = () => {
-    return (
-      <>
-    <form onSubmit={e => this.handleLoginEmail(e)}>
-      <h2> Log In </h2>
-      <input type="email" onChange={e => this.handleEmailChange(e)} value={this.state.email} placeholder="youEmail@example.com"></input>
-      <input type="password" placeholder="password"></input>
-      <input type="submit"></input>
-    </form>
-    <button> Google Login </button>
-    </>
-    )
-  }
-
-  render() {
-    const showForm = this.state.existing ? this.login_form() : this.signup_form()
-
-    return (
-      <form className="component">
-          {showForm}
+      <h3>{ signup ? 'Sign up' : 'Login'}</h3>
+      <form>
+        { signup && 
+        <>
+          <label>Name:</label>
+          <input type="text" name="first_name" placeholder="first"/>
+          <input type="text" name="last_name" placeholder="last"/><br/>
+        </>
+        }
+        <label>Username: <input type="text" name="username"/></label><br/>
+        <label>Password: <input type="password" name="password"/></label>
+        { signup && <><input type="password" name="passwordConfirmation" placeholder="confirm password"/></>}
+        <br/>
+        <input type="submit" value="Submit" />
       </form>
-    );
-  }
-};
+      <br/>
+      <br/>
+      <button onClick={toggleSignup}> { signup ? 'Login':'Sign up'}</button>
+    </>
+  )
+}
 
-export default Login
+const mapStateToProps = (state) => ({ ...state.user })
+
+export default connect(mapStateToProps, { addNewUser, toggleSignup })(Login)
