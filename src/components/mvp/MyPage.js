@@ -31,7 +31,9 @@ class MyPage extends Component {
             <div className="container-fluid">
                 <h2>MY PROFILE PAGE</h2>
                 {/* {this.renderTeamInfo()} */}
-                <Link to={`/mlbteams`}><button onClick={this.props.goBack}>Back to Teams</button></Link>
+                <Link to={`/mlbteams`}><button>View Teams</button></Link>
+                <Link to={`/mlbteams`}><button>Add New Lineup</button></Link>
+                <Link to={`/`}><button>Home</button></Link>
             </div>
         )        
     }
