@@ -1,77 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { toggleSignup, handleLoginFormChange, sendSignup, sendLogin } from "../../redux/UserActionCreators.js"
 
-class Login extends Component {
+const Login = (props) => {
 
-  state = {
-    existing: false,
-    first_name: '',
-    last_name: '',
-    email: '',
-    provider: 'email',
-  }
+  const { form, handleLoginFormChange, sendLogin, sendSignup, signup, toggleSignup } = props
+  const { name_first, name_last, password, passwordConfirmation, username } = form
+  const onSubmit = (event) => { 
+        event.preventDefault()
+        if (signup){
+          if (password === passwordConfirmation){
+            sendSignup({username: username, name_first: name_first, name_last: name_last, password: password})
+          } else {
+            alert("Those passwords do not match")
+          }
+        } else {
+          sendLogin({username: username, password: password})
+        }
+     }
 
-  handleFirstNameChange = event => {
-    this.setState({
-      first_name: event.target.value
-    })
-  }
-  handleLastNameChange = event => {
-    this.setState({
-      last_name: event.target.value
-    })
-  }
-  handleEmailChange = event => {
-    this.setState({
-      email: event.target.value
-    })
-  }
-
-  handleGoogle = event => {
-    debugger
-    this.setState({ provider: 'google' })
-  }
-
-
-  signup_form = () => {
-    return (
-    <>
-    <form onSubmit={e => this.handleSignEmail(e)}>
-      <h2> Sign Up </h2>
-      <input type="text" onChange={e => this.handleFirstNameChange(e)} value={this.state.first_name} placeholder="First name"></input>
-      <input type="text" onChange={e => this.handleLastNameChange(e)} value={this.state.last} placeholder="Last name"></input>
-      <input type="email" onChange={e => this.handleEmailChange(e)} value={this.state.email} placeholder="youEmail@example.com"></input>
-      <input type="password" placeholder="password"></input>
-      <input type="submit"></input>
-    </form>
-    <button onClick={e => this.handleGoogle(e)}> Google Login </button>
-    </>
-    )
-  }
-
-
-  login_form = () => {
-    return (
+  return(
+    <div className="login">
+      <h3>{ signup ? "Sign Up" : "Login"}</h3>
       <>
-    <form onSubmit={e => this.handleLoginEmail(e)}>
-      <h2> Log In </h2>
-      <input type="email" onChange={e => this.handleEmailChange(e)} value={this.state.email} placeholder="youEmail@example.com"></input>
-      <input type="password" placeholder="password"></input>
-      <input type="submit"></input>
-    </form>
-    <button> Google Login </button>
-    </>
-    )
-  }
-
-  render() {
-    const showForm = this.state.existing ? this.login_form() : this.signup_form()
-
-    return (
-      <form className="component">
-          {showForm}
+      <form onSubmit={ onSubmit }>
+      { signup ?
+        <>
+          <input type="text" name="name_first" value={name_first} onChange={handleLoginFormChange} placeholder="First name"/><br/>
+          <input type="text" name="name_last" value={name_last} onChange={handleLoginFormChange} placeholder="Last name" /><br/>
+        </> 
+        : <></>}
+          <input type="text" name="username" value={username} onChange={handleLoginFormChange} placeholder="username" /><br/>
+          <input type="password" name="password" value={password} onChange={handleLoginFormChange} placeholder="password" /><br/>
+      { signup ? 
+        <>
+          <input type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={handleLoginFormChange} placeholder="Confirm password" /><br/>
+        </> : <></>}
+        <input type="submit" value="Enter" /><br/>
       </form>
-    );
-  }
-};
+      </>
+      <br/>
+      <button onClick={toggleSignup}>{ signup ? "Login" : "Sign up"}</button>
+    </div>
+  )
 
-export default Login
+}
+
+const mapStateToProps = (state) => ({ 
+  signup: state.user.signup,
+  form: state.user.loginForm
+ })
+
+export default connect(mapStateToProps, { toggleSignup, handleLoginFormChange, sendSignup, sendLogin })(Login)
