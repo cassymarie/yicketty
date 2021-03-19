@@ -4,9 +4,11 @@ import { Switch, Route } from 'react-router-dom'
 import { getMlbTeams } from './redux/MlbActionCreators.js'
 import { autoLogin } from './redux/UserActionCreators.js'
 import MlbTeams from './containers/MlbTeams.js'
+import Home from './components/home.js'
+import MyPage from './components/mvp/MyPage.js'
 import TeamPage from './components/mlb/TeamPage.js'
 // import NavBar from './containers/NavBar.js'
-import Login from './components/login/Login.js'
+import Login from './components/login/login.js'
 
 class App extends Component {
 
@@ -24,6 +26,8 @@ class App extends Component {
               <Switch>
                 <Route path="/mlbteams/:id" component={TeamPage}/>
                 <Route path="/mlbteams" component={MlbTeams}/>
+                <Route path="/mvp/lineups" component={MyPage}/>
+                <Route path="/" component={Home}/>
               </Switch>
               :
               <Login/>
