@@ -1519,6 +1519,11 @@
     "estree-walker" "^1.0.1"
     "picomatch" "^2.2.2"
 
+"@shopify/draggable@^1.0.0-beta.8":
+  "integrity" "sha512-9IeBPQM93Ad4qFKUopwuTClzoST/1OId4MaSd/8FB5ScCL2tl25UaOGNR8E2hjiL7xK4LN5+I1Ews6amS7YAiA=="
+  "resolved" "https://registry.npmjs.org/@shopify/draggable/-/draggable-1.0.0-beta.8.tgz"
+  "version" "1.0.0-beta.8"
+
 "@sindresorhus/is@^0.14.0":
   "integrity" "sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ=="
   "resolved" "https://registry.npmjs.org/@sindresorhus/is/-/is-0.14.0.tgz"
