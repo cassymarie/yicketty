@@ -11,7 +11,7 @@ import Login from './components/login/Login.js'
 class App extends Component {
 
   componentDidMount(){
-    
+
     localStorage.token && this.props.autoLogin()
     this.props.getMlbTeams()
   }
@@ -22,7 +22,6 @@ class App extends Component {
           <div className="app container-fluid" style={{backgroundColor:`${color}`}}>
             {this.props.user.id ? 
               <Switch>
-                <Route path="/" component={MlbTeams}/>
                 <Route path="/mlbteams/:id" component={TeamPage}/>
                 <Route path="/mlbteams" component={MlbTeams}/>
               </Switch>
