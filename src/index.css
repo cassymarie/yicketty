@@ -24,6 +24,10 @@ code {
   border: 1px solid black;
   padding: 20px;
   text-align: center;
+  background-color: wheat;
+  margin: auto;
+  margin-top: 20%;
+  width: 50%;
 }
 
 .mlb-team-card {
@@ -43,4 +47,5 @@ code {
 
 .app {
   padding: 15px;
+  height: 100%;
 }
