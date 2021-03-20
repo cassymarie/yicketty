@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setTeamRoster, setSelectedTeam, unSelectTeam } from '../../redux/MlbActionCreators.js'
 
 class MyPage extends Component {
 

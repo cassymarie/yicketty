@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Home = (props) => {
-//   const {name, name_full, color1, logo, id} = props
-    console.log(props)
+
   return (
     <>
     <div className="home-button">

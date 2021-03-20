@@ -15,20 +15,28 @@ export const setSelectedTeam = (id) => {
       .then(selectedTeam => dispatch({ type: 'SET_SELECTED_TEAM', payload: selectedTeam }));
   };
 } 
+
+export const setCurrentPlayer = (id) => ({type: 'SET_CURRENT_PLAYER', payload: id})
+
 export const unSelectTeam = () => ({type: 'UNSELECT_TEAM'})
 
 export const setTeamRoster = (id) => {
   return (dispatch) => {
     fetch(`${API}/mlb/teams/${id}/roster`)
       .then(response => response.json())
-      .then(teamRoster => dispatch({ type: 'SET_TEAM_ROSTER', payload: teamRoster}));
-  };
-}
+      .then(teamRoster => {
+        const roster = teamRoster.data.map(team => team.attributes)
+        dispatch({ type: 'SET_TEAM_ROSTER', payload: roster })
+    })
+  }}
+
+
 export const getPlayerSeasonStats = (id) => {
   return (dispatch) => {
     fetch(`${API}/mlb/player/${id}/season_stats`)
       .then(response => response.json())
-      .then(stats => dispatch({ type: 'SET_PLAYER_STATS', payload: stats }));
+      .then(stats => {
+        dispatch({ type: 'SET_PLAYER_STATS', payload: stats.results })});
   };
 } 
 export const getPlayerCareerStats = (id) => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setTeamRoster, setSelectedTeam, unSelectTeam } from '../redux/MlbActionCreators.js'
+import Roster from '../containers/Roster.js'
 
 class TeamPage extends Component {
 
@@ -32,12 +33,15 @@ class TeamPage extends Component {
         )
     }
 
+
+
     render(){
 
         return(
             <div className="container-fluid">
                 {this.renderTeamInfo()}
                 <Link to={`/mlbteams`}><button onClick={this.props.goBack}>Back to Teams</button></Link>
+                <Roster />
             </div>
         )        
     }

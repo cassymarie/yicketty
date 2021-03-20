@@ -20,6 +20,9 @@ class App extends Component {
 
   render() {
     const color = this.props.mlbTeam.id ? this.props.mlbTeam.color1 : '#fff'
+
+    
+
     return (
           <div className="app container-fluid" style={{backgroundColor:`${color}`}}>
             {this.props.user.id ? 
