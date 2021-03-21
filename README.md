@@ -1,6 +1,6 @@
 # Yicketty ~ A baseball game
 
-This is the front end of the web application Yicketty, a type of baseball game.  You can select from your favorite team and set your line up from the roster.  You will be matched with a random team to begin the game.
+This is the front end of the web application Yicketty, an eventual type of baseball game.  You can select from your favorite team and set your line up from the roster.  You will be matched with a random team to begin the game. Currently you can view each MLB team and their current roster and each individuals stats.  You can set the lineup that you will eventually play the game with (Hoping by review time!)
 
 Upon game play, each player will have an at Bat until you have reached 3-outs.  Roll the dice to have your player 'hit'.  Results will be logged.  
 
@@ -10,17 +10,17 @@ Yicketty uses [Yak](https://github.com/cassymarie/yak) repository for the backen
 
 This project serves as the final project from the online Software Engineering course.  Below are the basic requirements that need to be met.
 
-- [ ] The code should be written in ES6 as much as possible
+- [x] The code should be written in ES6 as much as possible
 - [x] Use the [create-react-app](https://github.com/facebook/create-react-app) generator to start your project.
 - [x] Your app should have one HTML page to render your react-redux application
-- [ ] There should be 5 stateless components
-- [ ] There should be 3 routes
-- [ ] The Application must make use of react-router and proper RESTful routing.
+- [x] There should be 5 stateless components
+- [x] There should be 3 routes
+- [x] The Application must make use of react-router and proper RESTful routing.
 - [x] Use Redux middleware to respond to and modify state change
 - [x] Make use of async actions and redux-thunk middleware to send data to and receive data from a server
-- [ ] Your Rails API should handle the data persistence with a database. You should be using fetch() within your actions to GET and POST data from your API - do not use jQuery methods.
-- [ ] Your client-side application should handle the display of data with minimal data manipulation
-- [ ] Your application should have some minimal styling.
+- [x] Your Rails API should handle the data persistence with a database. You should be using fetch() within your actions to GET and POST data from your API - do not use jQuery methods.
+- [x] Your client-side application should handle the display of data with minimal data manipulation
+- [x] Your application should have some minimal styling.
 
 ## Available Scripts
 
