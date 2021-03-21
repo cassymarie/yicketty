@@ -7,7 +7,7 @@ const nullTeam =  {
     league: '',
     logo: '',
     name: '',
-    name_full: '',
+    nameFull: '',
     state: '',
     venue: '',
     website: ''
@@ -17,8 +17,10 @@ const initialMlbState = {
     teams: [],
     teamRoster: [],
     selectedTeam: nullTeam,
-    playerSeasonStats: [],
-    playerCareerStats: []
+    currentPlayer: '',
+    playerImages: '',
+    playerStats: [],
+    cardToggle: false
 }
 
 const mlbReducer = (state=initialMlbState, action) => {
@@ -29,12 +31,22 @@ const mlbReducer = (state=initialMlbState, action) => {
                 return {...state, teamRoster: action.payload}
             case 'SET_SELECTED_TEAM':
                 return {...state, selectedTeam: action.payload}
+            case 'SET_CURRENT_PLAYER':
+                return {...state, currentPlayer: action.payload}
+            case 'UNSELECT_PLAYER':
+                    return {...state, currentPlayer: ''}
             case 'UNSELECT_TEAM':
                 return {...state, selectedTeam: nullTeam}
+            case 'TOGGLE_PLAYER_CARD':
+                return {...state, cardToggle: action.payload }
             case 'SET_PLAYER_STATS':
-                return {...state, playerSeasonStats: action.payload}
-            case 'SET_CAREER_STATS':
-                return {...state, playerCareerStats: action.payload}
+                return {...state, playerStats: action.payload}
+            case 'CLEAR_PLAYER_STATS':
+                return {...state, playerStats: []}
+            case 'SET_PLAYER_IMAGES':
+                return {...state, playerImages: action.payload }
+            case 'CLEAR_PLAYER_IMAGES':
+                return {...state, playerImages: '' }
             default: 
                 return {...state}
         }

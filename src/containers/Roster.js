@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import TeamCard from '../components/mlb/TeamCard.js';
-
+import PlayerRosterRow from '../components/player/PlayerRosterRow'
 
 class Roster extends Component {
 
   renderList = () => {
     return (
-        {this.props.roster.map(player => <TeamCard key={player.id} {...player}/>)}
+      <>
+      <ul className="roster-list">
+        {this.props.roster.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
+      </ul>
+      </>
     )
   }
 
-
   render(){
-
     return(
-      <>
-        <div className="row">
-        <h2> Team Roster </h2>
-          
-        </div>
-      </>
+      <div className="team-roster">
+      <h2 className="page-header"> Team Roster </h2>
+        {this.renderList()}
+      </div>
     )
   }
     
 }
 
 const mapStateToProps = (state) => ({
-    roster: state.mlb.selectedTeam
+    team: state.mlb.selectedTeam,
+    roster: state.mlb.teamRoster,
+    stats: state.mlb.playerSeasonStats
   })
 
 export default connect(mapStateToProps)(Roster);

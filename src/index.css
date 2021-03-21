@@ -49,3 +49,123 @@ code {
   padding: 15px;
   height: 100%;
 }
+.page-header {
+   padding: 5px;
+   margin: 0%;
+   background-color: darkred;
+   color: white;
+}
+
+/* MLB TEAM PAGE */
+
+/* Roster */
+.team-roster {
+  background-color: white;
+  border: 1px solid black;
+  margin: 0%;
+  margin-right: 20px;
+  width: 25%;
+}
+.roster-list {
+  padding: 4px;
+}
+
+.player-roster{
+  display: inline-flex;
+  text-align: center;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 4px;
+}
+
+.roster-number {
+  text-align: center;
+  width: 10%;
+  font-style: italic;
+}
+.roster-name {
+  text-align: left;
+  padding-left: 10px;
+  width: 250px;
+}
+
+/* Player Card */
+
+.player-card {
+  border: 1px black solid;
+  background-color: white;
+  margin: 20px;
+  width: 50%;
+  height: fit-content;
+}
+
+.player-card-header {
+  display: inline-flex;
+  margin: auto;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  min-height: 150px;
+}
+
+.player-card-title *{
+  color: white;
+  display: inline-flex;
+  height: 30px;
+  padding: 2px;
+  margin: 0px;
+  margin-top: 120px;
+  font-size: 18px;
+}
+
+
+.team-card-sect{
+  display: inline-flex;
+  margin: 0px;
+  float: left;
+  width: 100%;
+  left: 10px;
+
+}
+
+.stats-name{
+  width: fit-content;
+  padding-right: 5px;
+}
+
+.actionPhoto{
+  width: 100%;
+}
+
+/* Lineup */
+.lineup{
+  border: 1px black solid;
+  background-color: white;
+  display: block;
+  width: 25%;
+  padding: 5px;
+}
+
+.lineup-group{
+  display: inline-flex;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  padding: 4px;
+  height: 30px;
+}
+
+.lineup-position{
+  width: 40px;
+  margin-left: 5px;
+}
+
+.lineup-name {
+  width: 100%;
+  padding: 0px;
+  border: none;
+  border-radius: 10px;
+}
