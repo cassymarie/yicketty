@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PlayerRowInfo from '../components/player/PlayerRow'
+import PlayerRosterRow from '../components/player/PlayerRosterRow'
 
 class Roster extends Component {
 
@@ -8,8 +8,7 @@ class Roster extends Component {
     return (
       <>
       <tbody className="">
-        {this.props.roster.map(player => <PlayerRowInfo key={player.id} {...player}/>)}
-        {}
+        {this.props.roster.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
       </tbody>
       </>
     )

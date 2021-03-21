@@ -36,7 +36,7 @@ const mlbReducer = (state=initialMlbState, action) => {
             case 'UNSELECT_TEAM':
                 return {...state, selectedTeam: nullTeam}
             case 'TOGGLE_PLAYER_CARD':
-                return {...state, cardToggle: !state.cardToggle }
+                return {...state, cardToggle: action.payload }
             case 'SET_PLAYER_STATS':
                 return {...state, playerStats: action.payload}
             case 'SET_PLAYER_IMAGES':

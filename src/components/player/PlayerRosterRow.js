@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON } from '../../redux/MlbActionCreators.js'
+import { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../redux/MlbActionCreators.js'
 import PlayerCard from './PlayerCard.js'
 
 // import Draggable from 'react-draggable'
@@ -8,13 +8,12 @@ import PlayerCard from './PlayerCard.js'
 class PlayerRow extends Component {
 
   handleClick = (e) => {
+    this.props.toggleCardOFF()
     const playerId = e.target.parentElement.id
     this.props.setCurrentPlayer(playerId)
     this.props.getPlayerPhotos(playerId)
     this.props.getPlayerCareerStats(playerId)
     this.props.toggleCardON()
-    console.log("clicked: ",this.props)
-
     return(
       <>
         <PlayerCard key={this.props.id} {...this.props}/>
@@ -34,5 +33,5 @@ class PlayerRow extends Component {
     }
 }
 
-export default connect(null, { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON })(PlayerRow)
+export default connect(null, { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF  })(PlayerRow)
 

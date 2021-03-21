@@ -44,7 +44,7 @@ export const getPlayerCareerStats = (id) => {
   return (dispatch) => {
     fetch(`${API}/mlb/player/${id}/career`)
       .then(response => response.json())
-      .then(stats => dispatch({ type: 'SET_CAREER_STATS', payload: stats.stats }));
+      .then(stats => dispatch({ type: 'SET_PLAYER_STATS', payload: stats.stats }));
   };
 } 
 
