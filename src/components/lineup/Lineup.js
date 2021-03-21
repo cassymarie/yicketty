@@ -23,57 +23,57 @@ const Lineup = (props) => {
       <>
       <form onSubmit={ onSubmit }>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">1B</div>
-              <input type="text" class="form-control" id="_1B" name="_1B"/>
+          <div class="lineup-group">
+              <div class="lineup-position">1B</div>
+              <input type="text" class="lineup-name" id="_1B" name="_1B"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">2B</div>
-              <input type="text" class="form-control" id="_2B" name="_2B"/>
+          <div class="lineup-group">
+              <div class="lineup-position">2B</div>
+              <input type="text" class="lineup-name" id="_2B" name="_2B"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">3B</div>
-              <input type="text" class="form-control" id="_3B" name="_3B"/>
+          <div class="lineup-group">
+              <div class="lineup-position">3B</div>
+              <input type="text" class="lineup-name" id="_3B" name="_3B"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">SS</div>
-              <input type="text" class="form-control" id="SS" name="SS"/>
+          <div class="lineup-group">
+              <div class="lineup-position">SS</div>
+              <input type="text" class="lineup-name" id="SS" name="SS"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">OF1</div>
-              <input type="text" class="form-control" id="OF1" name="OF1"/>
+          <div class="lineup-group">
+              <div class="lineup-position">OF</div>
+              <input type="text" class="lineup-name" id="OF1" name="OF1"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">OF2</div>
-              <input type="text" class="form-control" id="OF2" name="OF2"/>
+          <div class="lineup-group">
+              <div class="lineup-position">OF</div>
+              <input type="text" class="lineup-name" id="OF2" name="OF2"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">OF3</div>
-              <input type="text" class="form-control" id="OF3" name="OF3"/>
+          <div class="lineup-group">
+              <div class="lineup-position">OF</div>
+              <input type="text" class="lineup-name" id="OF3" name="OF3"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">DH</div>
-              <input type="text" class="form-control" id="DH" name="DH"/>
+          <div class="lineup-group">
+              <div class="lineup-position">DH</div>
+              <input type="text" class="lineup-name" id="DH" name="DH"/>
           </div>
           </>
           <>
-          <div class="input-group">
-              <div class="input-group-addon">C</div>
-              <input type="text" class="form-control" id="C" name="C"/>
+          <div class="lineup-group">
+              <div class="lineup-position"> C</div>
+              <input type="text" class="lineup-name" id="C" name="C"/>
           </div>
           </>  
         <br/>

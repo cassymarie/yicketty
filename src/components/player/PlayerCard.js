@@ -4,13 +4,16 @@ import PlayerCardStatsRow from './PlayerCardStatsRow.js'
 
 class PlayerCard extends Component {
   
+  componentWillUnmount(){
+
+  }
+  
   statsInfo = () => {
     return(
       <tbody>
         {this.props.stats.map(stat => <PlayerCardStatsRow {...stat}/>)}
       </tbody>
     )
-
   }
 
   statsHeader = () => {
@@ -35,10 +38,21 @@ class PlayerCard extends Component {
   render(){
     return(
       <div className="player-card">
-        <><h2>#{this.props.player.jersey}</h2><h4>{this.props.player.nameFull}</h4></>
-        <p>{this.props.player.position}</p>
-        {this.statsHeader()}
-        {this.statsInfo()}
+        <>
+        <span className="player-card-header" style={{ backgroundImage: `url(${this.props.images.image})`}}>
+          <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
+          <>
+          <div className="player-card-title">
+            <p>#{this.props.player.jersey}</p><p>{this.props.player.nameFull}</p><p>{this.props.player.position}</p>
+          </div>
+          </>
+        </span>
+        </>
+        
+        <table className="table table-striped stats-table">
+          {this.statsHeader()}
+          {this.statsInfo()}
+        </table>
       </div>
     )
   }

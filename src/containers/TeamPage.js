@@ -47,8 +47,9 @@ class TeamPage extends Component {
             <div className="team-card-sect">
                 
                 <Roster />
-                { this.props.showCard ? <PlayerCard/> : <></>}
                 <Lineup />
+                { this.props.showCard ? <PlayerCard/> : <></>}
+                
             </div>
             </>
         )        

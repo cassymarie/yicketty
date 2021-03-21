@@ -63,19 +63,21 @@ code {
   background-color: white;
   border: 1px solid black;
   margin: 0%;
-  margin-top: 20px;
-  width: 40%;
-
+  margin-right: 20px;
+  width: 25%;
 }
-
-table *{
-  border: 1px solid black;
+.roster-list {
+  padding: 4px;
 }
 
 .player-roster{
-  line-height: 30px;
+  display: inline-flex;
   text-align: center;
-
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 4px;
 }
 
 .roster-number {
@@ -88,14 +90,6 @@ table *{
   padding-left: 10px;
   width: 250px;
 }
-.roster-position {
-  width: 5%;
-}
-
-th {
-  font-size: 16px;
-  padding: 5px;
-}
 
 /* Player Card */
 
@@ -104,13 +98,31 @@ th {
   background-color: white;
   margin: 20px;
   width: 50%;
-
-
+  height: fit-content;
 }
+
+.player-card-header {
+  display: inline-flex;
+  margin: auto;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  min-height: 150px;
+}
+
+.player-card-title *{
+  color: white;
+  display: inline-flex;
+  background-color: wheat;
+  height: 30px;
+  padding: 5px;
+  margin: 0px;
+  margin-top: 120px;
+}
+
 
 .team-card-sect{
   display: inline-flex;
-  background-color: tomato;
   margin: 0px;
   float: left;
   width: 100%;
@@ -123,10 +135,37 @@ th {
   padding-right: 5px;
 }
 
+.actionPhoto{
+  width: 100%;
+}
+
 /* Lineup */
 .lineup{
   border: 1px black solid;
   background-color: white;
   display: block;
   width: 25%;
+  padding: 5px;
+}
+
+.lineup-group{
+  display: inline-flex;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  padding: 4px;
+  height: 30px;
+}
+
+.lineup-position{
+  width: 40px;
+  margin-left: 5px;
+}
+
+.lineup-name {
+  width: 100%;
+  padding: 0px;
+  border: none;
+  border-radius: 10px;
 }

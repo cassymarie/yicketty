@@ -3,6 +3,12 @@ const API = "http://localhost:3000"
 export const addMlbTeams = () => ({type: 'MLB_TEAMS'})
 export const toggleCardON = () => ({type: 'TOGGLE_PLAYER_CARD', payload: true })
 export const toggleCardOFF = () => ({type: 'TOGGLE_PLAYER_CARD', payload: false })
+
+export const resetPlayer = () => ({type: 'UNSELECT_PLAYER'})
+export const clearStats = () => ({type: 'CLEAR_PLAYER_STATS'})
+export const clearImages = () => ({type: 'CLEAR_PLAYER_IMAGES'})
+
+
 export const getMlbTeams = () => {
     return (dispatch) => {
       fetch(`${API}/mlb/teams`)

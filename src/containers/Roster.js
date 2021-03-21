@@ -7,22 +7,10 @@ class Roster extends Component {
   renderList = () => {
     return (
       <>
-      <tbody className="">
+      <ul className="roster-list">
         {this.props.roster.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
-      </tbody>
+      </ul>
       </>
-    )
-  }
-
-  renderHeader = () => {
-    return(
-      <thead >
-        <tr >
-          <th className="roster-number">#</th>
-          <th className="roster-name">Name</th>
-          <th className="roster-position">Pos</th>
-        </tr>
-      </thead>
     )
   }
 
@@ -30,10 +18,7 @@ class Roster extends Component {
     return(
       <div className="team-roster">
       <h2 className="page-header"> Team Roster </h2>
-      <table>
-        {this.renderHeader()}
         {this.renderList()}
-      </table>
       </div>
     )
   }
