@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerCardStatsRow from './PlayerCardStatsRow.js'
+import { resetPlayer, clearStats, clearImages } from '../../redux/MlbActionCreators.js'
 
 class PlayerCard extends Component {
   
-  componentWillUnmount(){
-
+  componentDidMount(){
+    
   }
-  
+
+  componentWillUnmount(){
+    this.props.clearStats()
+    this.props.clearImages()
+    this.props.resetPlayer()
+  }
+
   statsInfo = () => {
     return(
       <tbody>
@@ -66,4 +73,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps)(PlayerCard)
+export default connect(mapStateToProps, { resetPlayer, clearStats, clearImages })(PlayerCard)
