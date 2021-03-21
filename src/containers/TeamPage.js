@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setTeamRoster, setSelectedTeam, unSelectTeam } from '../redux/MlbActionCreators.js'
+import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../redux/MlbActionCreators.js'
 import Roster from '../containers/Roster.js'
+import PlayerCard from '../components/player/PlayerCard.js'
 
 class TeamPage extends Component {
 
@@ -14,6 +15,7 @@ class TeamPage extends Component {
 
     componentWillUnmount(){
         this.props.unSelectTeam()
+        this.props.toggleCardOFF()
     }
 
     renderTeamInfo =() => {
@@ -33,8 +35,6 @@ class TeamPage extends Component {
         )
     }
 
-
-
     render(){
 
         return(
@@ -42,6 +42,7 @@ class TeamPage extends Component {
                 {this.renderTeamInfo()}
                 <Link to={`/mlbteams`}><button onClick={this.props.goBack}>Back to Teams</button></Link>
                 <Roster />
+                { this.props.showCard ? <PlayerCard/> : <></>}
             </div>
         )        
     }
@@ -50,8 +51,9 @@ class TeamPage extends Component {
 
 const mapStateToProps = (state) => ({
     roster: state.mlb.teamRoster,
-    team: state.mlb.selectedTeam
+    team: state.mlb.selectedTeam,
+    showCard: state.mlb.cardToggle
 })
 
 
-export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam })(TeamPage)
+export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF })(TeamPage)

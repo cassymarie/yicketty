@@ -4,15 +4,12 @@ import PlayerRowInfo from '../components/player/PlayerRow'
 
 class Roster extends Component {
 
-  componentDidMount(){
-    // console.log(this.props.roster)
-  }
-
   renderList = () => {
     return (
       <>
       <tbody className="">
         {this.props.roster.map(player => <PlayerRowInfo key={player.id} {...player}/>)}
+        {}
       </tbody>
       </>
     )

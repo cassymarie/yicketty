@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleSignup, handleLoginFormChange, sendSignup, sendLogin } from "../../redux/UserActionCreators.js"
+import { toggleSignup, handleLoginFormChange, sendSignup, sendLogin } from "../redux/UserActionCreators.js"
 
 const Login = (props) => {
 

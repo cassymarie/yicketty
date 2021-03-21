@@ -18,9 +18,9 @@ const initialMlbState = {
     teamRoster: [],
     selectedTeam: nullTeam,
     currentPlayer: '',
-    hittingStats: [],
-    playerSeasonStats: [],
-    playerCareerStats: []
+    playerImages: '',
+    playerStats: [],
+    cardToggle: false
 }
 
 const mlbReducer = (state=initialMlbState, action) => {
@@ -32,13 +32,15 @@ const mlbReducer = (state=initialMlbState, action) => {
             case 'SET_SELECTED_TEAM':
                 return {...state, selectedTeam: action.payload}
             case 'SET_CURRENT_PLAYER':
-                return {...state, selectedTeam: action.payload}
+                return {...state, currentPlayer: action.payload}
             case 'UNSELECT_TEAM':
                 return {...state, selectedTeam: nullTeam}
+            case 'TOGGLE_PLAYER_CARD':
+                return {...state, cardToggle: !state.cardToggle }
             case 'SET_PLAYER_STATS':
-                return {...state, playerSeasonStats: action.payload}
-            case 'SET_CAREER_STATS':
-                return {...state, playerCareerStats: action.payload}
+                return {...state, playerStats: action.payload}
+            case 'SET_PLAYER_IMAGES':
+                return {...state, playerImages: action.payload }
             default: 
                 return {...state}
         }

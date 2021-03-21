@@ -8,7 +8,7 @@ import Home from './components/home.js'
 import MyPage from './components/mvp/MyPage.js'
 import TeamPage from './containers/TeamPage.js'
 // import NavBar from './containers/NavBar.js'
-import Login from './components/login/login.js'
+import Login from './components/login.js'
 
 class App extends Component {
 
