@@ -3,6 +3,7 @@ const API = "http://localhost:3000"
 export const addNewUser = () => ({type: 'ADD_NEW_USER'})
 export const toggleSignup = () => ({type: 'TOGGLE_SIGNUP'})
 export const clearLoginForm = () => ({type: 'LOGIN_FORM_CLEAR'})
+export const clearToken = () => ({type: 'CLEAR_TOKEN'})
 export const handleLoginFormChange = (e) => ({type: 'LOGIN_FORM_CHANGE', payload: {name: e.target.name, value: e.target.value}})
 
 
@@ -17,6 +18,7 @@ export const sendSignup = (userData) => {
         })
         .then(response => response.json())
         .then(response => {
+            debugger
             localStorage.token = response.token
             dispatch({ type: 'LOGIN_USER', payload: response.user.data.attributes })
         })
@@ -38,8 +40,10 @@ export const sendLogin = (userData) => {
             dispatch({ 
             type: 'LOGIN_USER', 
             payload: response.user.data.attributes 
+        })})
+        .catch( err => {
+            alert(err)
         })
-    })
     }
 }
 
@@ -56,7 +60,7 @@ export const autoLogin = () => {
         .then(response => {
             dispatch({ 
             type: 'LOGIN_USER', 
-            payload: response.user.data.attributes 
+            payload: response.user.data.attributes
         })
     })
     }

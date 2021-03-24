@@ -1,24 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerCardStatsRow from './PlayerCardStatsRow.js'
-import { resetPlayer, clearStats, clearImages } from '../../redux/MlbActionCreators.js'
+import { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF } from '../../redux/MlbActionCreators.js'
+import Spinner from 'react-bootstrap/Spinner'
 
 class PlayerCard extends Component {
-  
-  componentDidMount(){
-    
-  }
 
   componentWillUnmount(){
     this.props.clearStats()
     this.props.clearImages()
     this.props.resetPlayer()
+    this.props.toggleCardOFF()
+  }
+
+  loading = () => {
+    return(
+      <Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    )
   }
 
   statsInfo = () => {
+    const statsBySeason = this.props.stats
     return(
       <tbody>
-        {this.props.stats.map(stat => <PlayerCardStatsRow {...stat}/>)}
+        {statsBySeason.length === 'undefined' ? this.loading() : statsBySeason.map(stat => <PlayerCardStatsRow {...stat}/>) }
       </tbody>
     )
   }
@@ -43,10 +50,12 @@ class PlayerCard extends Component {
   }
 
   render(){
+    const background = this.props.images.length === 0 ? 'https://via.placeholder.com/150' : this.props.images.image
+
     return(
       <div className="player-card">
         <>
-        <span className="player-card-header" style={{ backgroundImage: `url(${this.props.images.image})`}}>
+        <span className="player-card-header" style={{ backgroundImage: `url(${background})`}}>
           <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
           <>
           <div className="player-card-title">
@@ -73,4 +82,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { resetPlayer, clearStats, clearImages })(PlayerCard)
+export default connect(mapStateToProps, { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF })(PlayerCard)

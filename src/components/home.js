@@ -6,9 +6,10 @@ const Home = (props) => {
   return (
     <>
     <div className="home-button">
-      <h2 className=""> Home Page </h2>
+      <h2 className="page-title"> Home Page </h2>
     <Link to={`/mlbteams`}><button>View MLB Teams</button></Link>
     <Link to={`/mvp/lineups`}><button>My Lineups</button></Link>
+    <Link to={`/mvp/game`}><button>Play Yicketty</button></Link>
     {/* <Link to={`/yicketty`}><button> Play Game </button></Link> */}
     </div>
     </>

@@ -21,9 +21,9 @@ const userReducer = (state=nullUser, action) => {
             return {...state, signup: !state.signup }
         case 'LOGIN_USER':
             return {...state, ...action.payload}
-        case 'LOGIN_FORM_CHANGE':
-            return {...state, loginForm: initialLoginForm}
         case 'LOGIN_FORM_CLEAR':
+            return {...state, loginForm: initialLoginForm}
+        case 'LOGIN_FORM_CHANGE':
             return {...state, loginForm: {
                 ...state.loginForm, [action.payload.name]: action.payload.value
             }}

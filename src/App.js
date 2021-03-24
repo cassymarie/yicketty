@@ -14,6 +14,8 @@ class App extends Component {
 
   componentDidMount(){
 
+    if (localStorage.token === 'undefined'){localStorage.clear()}
+    
     localStorage.token && this.props.autoLogin()
     this.props.getMlbTeams()
   }
@@ -24,6 +26,7 @@ class App extends Component {
     
 
     return (
+      //, backgroundImage: `url('https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=')`
           <div className="app container-fluid" style={{backgroundColor:`${color}`}}>
             {this.props.user.id ? 
               <Switch>

@@ -8,15 +8,14 @@ export const resetPlayer = () => ({type: 'UNSELECT_PLAYER'})
 export const clearStats = () => ({type: 'CLEAR_PLAYER_STATS'})
 export const clearImages = () => ({type: 'CLEAR_PLAYER_IMAGES'})
 
-
 export const getMlbTeams = () => {
     return (dispatch) => {
       fetch(`${API}/mlb/teams`)
         .then(response => response.json())
         .then(mlb => dispatch({ type: 'SET_MLB_TEAMS', payload: mlb }));
     };
-  } 
-  
+  }
+
 export const setSelectedTeam = (id) => {
   return (dispatch) => {
     fetch(`${API}/mlb/teams/${id}`)

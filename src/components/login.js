@@ -6,6 +6,7 @@ const Login = (props) => {
 
   const { form, handleLoginFormChange, sendLogin, sendSignup, signup, toggleSignup } = props
   const { name_first, name_last, password, passwordConfirmation, username } = form
+
   const onSubmit = (event) => { 
         event.preventDefault()
         if (signup){

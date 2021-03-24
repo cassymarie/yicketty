@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerRosterRow from '../components/player/PlayerRosterRow'
 
+
 class Roster extends Component {
 
   renderList = () => {
     return (
       <>
       <ul className="roster-list">
-        {this.props.roster.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
+          {this.props.roster.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
       </ul>
       </>
     )
@@ -17,7 +18,7 @@ class Roster extends Component {
   render(){
     return(
       <div className="team-roster">
-      <h2 className="page-header"> Team Roster </h2>
+      <h2 className="page-header"> 2020 - 40 Man Roster (Hitting) </h2>
         {this.renderList()}
       </div>
     )

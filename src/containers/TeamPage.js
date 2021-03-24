@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../redux/MlbActionCreators.js'
+import { } from '../redux/LineupActionCreators.js'
 import Roster from '../containers/Roster.js'
 import PlayerCard from '../components/player/PlayerCard.js'
 import Lineup from '../components/lineup/Lineup.js'
@@ -12,6 +13,7 @@ class TeamPage extends Component {
         const id = this.props.match.params.id
         this.props.setSelectedTeam(id)
         this.props.setTeamRoster(id)
+
     }
 
     componentWillUnmount(){
@@ -45,11 +47,11 @@ class TeamPage extends Component {
                 <Link to={`/mlbteams`}><button onClick={this.props.goBack}>Back to Teams</button></Link>
             </div>
             <div className="team-card-sect">
-                
-                <Roster />
-                <Lineup />
+                    <>
+                    <Roster />
+                    <Lineup />
+                    </>
                 { this.props.showCard ? <PlayerCard/> : <></>}
-                
             </div>
             </>
         )        
