@@ -25,6 +25,16 @@ code {
     monospace;
 }
 
+
+.app {
+  /* padding: 15px; */
+  height: 100%;
+  max-height: max-content;
+  background-size: cover;
+}
+
+
+
 .login {
   border: 1px solid black;
   padding: 20px;
@@ -35,13 +45,28 @@ code {
   width: 50%;
 }
 
+
+.page-header {
+  /* padding: 5px; */
+  text-align: left;
+  margin: 0%;
+  background-color: darkred;
+  color: white;
+}
+
+.page-title {
+ /* color: white; */
+ color: darkblue;
+ text-shadow: 1px 1px 1px black;
+ margin-left: 20px;
+}
+
+
 /*MLB TEAMS / BY LEAGUE */
 
 .league {
-  border: 1px solid black;
-  background-color: pink;
   margin: 20px;
-  text-align: center;
+  text-align: left;
   max-width: fit-content;
 }
 
@@ -51,47 +76,59 @@ code {
 
 .mlb-team-card {
   border: 1px solid black;
+  border-radius: 5em;
+  box-shadow: 1em .5em .5em rgba(80, 80, 80,0.80);
+  min-width: 10em;
+  max-width: 15em;
   text-align: center; 
-  margin: 10px;
-  padding-top: 10px;
+  margin: 1em;
+  padding-top: 1em;
 }
 
 .mlb-card-title {
-  font-size: 20px;
+  font-size: 1.5em;
   color: white;
   text-shadow: 1px 1px 1px black;
+  padding: .25em;
   margin: 0px;
   margin-bottom: 10px;
 }
 
 .mlb-card-logo {
-  width: 75px;
-  height: 75px;
+  width: 5em;
+  height: 5em;
 }
 
-.app {
-  padding: 15px;
-  height: 100%;
-  max-height: max-content;
-  background-size: cover;
-}
-
-
-.page-header {
-   padding: 5px;
-   margin: 0%;
-   background-color: darkred;
-   color: white;
-}
-
-.page-title {
-  /* color: white; */
-  color: darkblue;
-  text-shadow: 1px 1px 1px black;
-  margin-left: 20px;
-}
 
 /* MLB TEAM PAGE */
+.team-header {
+  height: 80px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.team-info {
+  margin-left: 1.5em;
+}
+
+.team-title {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  font-size: 40px;
+}
+
+.team-logo {
+  margin: auto;
+  padding-top: 5px;
+  max-height: 70px;
+}
+
+.team-location {
+  color: white;
+  font-weight: bold;
+  /* text-shadow: .5px .5px .5px black; */
+  font-size: 14px;
+}
 
 /* Roster */
 .team-roster {

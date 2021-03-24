@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../redux/MlbActionCreators.js'
-import { handleLineupChange } from '../../redux/LineupActionCreators.js'
+import { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../actions/MlbActionCreators.js'
+import { handleLineupChange } from '../../actions/LineupActionCreators.js'
 import PlayerCard from './PlayerCard.js'
 
 

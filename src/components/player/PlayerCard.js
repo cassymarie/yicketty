@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerCardStatsRow from './PlayerCardStatsRow.js'
-import { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF } from '../../redux/MlbActionCreators.js'
+import { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF } from '../../actions/MlbActionCreators.js'
 import Spinner from 'react-bootstrap/Spinner'
 
 class PlayerCard extends Component {

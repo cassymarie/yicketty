@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import TeamCard from '../components/mlb/TeamCard.js';
 import  Container from 'react-bootstrap/Container'
@@ -34,7 +34,6 @@ class MlbTeams extends Component {
   render(){
     return(
       <>
-      <Link to={`/`}><button onClick={this.props.goBack}>Home</button></Link>
       <Row>
         <>
         <Col className="league">

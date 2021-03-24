@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { submitLineupForm } from '../../redux/LineupActionCreators.js'
+import { submitLineupForm } from '../../actions/LineupActionCreators.js'
 
 const Lineup = (props) => {
     const { _1B, _2B, _3B, SS, RF, LF, CF, DH, C } = props

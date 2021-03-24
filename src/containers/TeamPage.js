@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../redux/MlbActionCreators.js'
-import { } from '../redux/LineupActionCreators.js'
+// import { Link } from 'react-router-dom'
+import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../actions/MlbActionCreators.js'
+// import { } from '../actions/LineupActionCreators.js'
 import Roster from '../containers/Roster.js'
 import PlayerCard from '../components/player/PlayerCard.js'
-import Lineup from '../components/lineup/Lineup.js'
+// import Lineup from '../components/lineup/Lineup.js'
+import TeamHeader from '../components/mlb/TeamHeader.js'
+// import Container from 'react-bootstrap/Container'
+// import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col'
+
 
 class TeamPage extends Component {
 
@@ -21,36 +26,16 @@ class TeamPage extends Component {
         this.props.toggleCardOFF()
     }
 
-    renderTeamInfo =() => {
-        return(
-            <>
-            <div className="col-xs-2">
-                <img style={{width:"100px", height:"100px"}}src={this.props.team.logo} alt={this.props.team.name_full}/>
-                </div>
-            <div className="col-xs-8" style={{color: 'white'}}>
-                <h1><a href={this.props.team.website}>{this.props.team.name_full}</a></h1>
-            </div>
-            <div className="col-xs-2" style={{color: 'white'}}>
-                <h4>{this.props.team.venue}</h4>
-                <p>{this.props.team.city},{this.props.team.state}</p>
-            </div>
-            </>
-        )
-    }
-
     render(){
 
         return(
             <>
-            <div>
-                {this.renderTeamInfo()}
-                <Link to={`/mlbteams`}><button onClick={this.props.goBack}>Back to Teams</button></Link>
-            </div>
+            <TeamHeader team={this.props.team}/>
             <div className="team-card-sect">
-                    <>
-                    <Roster />
-                    <Lineup />
-                    </>
+                <>
+                <Roster />
+                {/* <Lineup /> */}
+                </>
                 { this.props.showCard ? <PlayerCard/> : <></>}
             </div>
             </>
