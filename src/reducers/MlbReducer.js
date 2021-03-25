@@ -17,9 +17,10 @@ const initialMlbState = {
     teams: [],
     teamRoster: [],
     selectedTeam: nullTeam,
-    currentPlayer: '',
+    currentPlayer: null,
     playerImages: '',
     playerStats: [],
+    pitcherToggle: false,
     cardToggle: false
 }
 
@@ -32,11 +33,15 @@ const mlbReducer = (state=initialMlbState, action) => {
             case 'SET_SELECTED_TEAM':
                 return {...state, selectedTeam: action.payload}
             case 'SET_CURRENT_PLAYER':
-                return {...state, currentPlayer: action.payload}
+                return {...state, currentPlayer: action.payload, cardToggle: true}
             case 'UNSELECT_PLAYER':
-                    return {...state, currentPlayer: ''}
+                    return {...state, currentPlayer: null, cardToggle: false}
             case 'UNSELECT_TEAM':
                 return {...state, selectedTeam: nullTeam}
+            case 'TOGGLE_PITCHER':
+                return {...state, pitcherToggle: true }
+            case 'TOGGLE_PITCHER_RESET':
+                return {...state, pitcherToggle: false }
             case 'TOGGLE_PLAYER_CARD':
                 return {...state, cardToggle: action.payload }
             case 'SET_PLAYER_STATS':

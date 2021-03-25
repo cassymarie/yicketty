@@ -1,68 +1,69 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../actions/MlbActionCreators.js'
+import { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../actions/MlbActionCreators.js'
 import { handleLineupChange } from '../../actions/LineupActionCreators.js'
-import PlayerCard from './PlayerCard.js'
+// import PlayerCard from './PlayerCard.js'
+import ListGroup from 'react-bootstrap/ListGroup'
+// import Row from 'react-bootstrap/Row'
 
 
-class PlayerRow extends Component {
+class PlayerRosterRow extends Component {
 
   handleClick = (e) => {
+    this.props.resetPlayer()
+
+    e.stopPropagation()
     
-    const playerId = e.target.parentElement.id
-    
+    const playerId = e.target.tagName === 'P' ? e.target.parentNode.id : e.target.id
+
     this.props.setCurrentPlayer(playerId)
-    this.props.getPlayerPhotos(playerId)
-    this.props.getPlayerCareerStats(playerId)
-    this.props.toggleCardON()
-
-    return(
-      <>
-        <PlayerCard key={this.props.id} {...this.props}/>
-      </>
-    )
+    // this.props.getPlayerPhotos(playerId)
+    // this.props.getPlayerCareerStats(playerId)
+    // this.props.toggleCardON()
   }
 
-  statePosition = (position) => {
-    return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
-  }
+  // renderPlayers = () => {
+  // return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
+  // }
 
-  addToLineUp= (e) => {
-    const row = e.target.parentElement
-    let position = this.statePosition(row.children[2].innerText)
-    row.className = "player-roster unavailable"
-    const existing = this.props.lineup[position]
+  // statePosition = (position) => {
+  //   return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
+  // }
 
-    if (existing !== null) {
-      if (this.props.lineup.DH === null) {
-        position = 'DH'
-      } else {
-        document.getElementById(existing.id).className = "player-roster available"
-      }
-    }
+  // addToLineUp= (e) => {
+  //   const row = e.target.parentElement
+  //   let position = this.statePosition(row.children[2].innerText)
+  //   row.className = "player-roster unavailable"
+  //   const existing = this.props.lineup[position]
 
-    this.props.handleLineupChange(position, this.props)
-  }
+  //   if (existing !== null) {
+  //     if (this.props.lineup.DH === null) {
+  //       position = 'DH'
+  //     } else {
+  //       document.getElementById(existing.id).className = "player-roster available"
+  //     }
+  //   }
 
-  resetExisitingPlayer = () => {
-
-  }
+  //   this.props.handleLineupChange(position, this.props)
+  // }
 
     render(){
       return (
-        this.props.position === "P" ? <></> :
-          <li onDoubleClick={this.addToLineUp} onClick={this.handleClick} className="player-roster available" id={this.props.id}>
-            <span className="roster-number">{this.props.jersey}</span>
-            <span className="roster-name">{this.props.nameFull}</span>
-            <span className="roster-position">{this.props.position}</span>
-          </li>
+        <ListGroup.Item action onClick={this.handleClick} bsPrefix="player-roster" id={this.props.id}>
+          {/* <Row> */}
+            <p onClick={this.handleClick}  className="roster-number">{this.props.jersey}</p>
+            <p onClick={this.handleClick}  className="roster-name">{this.props.nameFull}</p>
+            <p onClick={this.handleClick}  className="roster-position">{this.props.position}</p>
+          {/* </Row> */}
+        </ListGroup.Item>
       )
     }
 }
 
 const mapStateToProps = (state) => ({
-  lineup: state.lineup
+  lineup: state.lineup,
+  togglePitcher: state.mlb.togglePitcher
 })
 
-export default connect(mapStateToProps, { getPlayerPhotos, setCurrentPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF,handleLineupChange })(PlayerRow)
+export default connect(mapStateToProps, { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF,handleLineupChange })(PlayerRosterRow)
 

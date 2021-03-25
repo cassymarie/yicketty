@@ -3,6 +3,8 @@ const API = "http://localhost:3000"
 export const addMlbTeams = () => ({type: 'MLB_TEAMS'})
 export const toggleCardON = () => ({type: 'TOGGLE_PLAYER_CARD', payload: true })
 export const toggleCardOFF = () => ({type: 'TOGGLE_PLAYER_CARD', payload: false })
+export const togglePitcher = () => ({type: 'TOGGLE_PITCHER'})
+export const togglePitcherReset = () => ({type: 'TOGGLE_PITCHER_RESET'})
 
 export const resetPlayer = () => ({type: 'UNSELECT_PLAYER'})
 export const clearStats = () => ({type: 'CLEAR_PLAYER_STATS'})
@@ -28,8 +30,8 @@ export const setCurrentPlayer = (id) => {
   return (dispatch) => {
     fetch(`${API}/mlb/player/${id}`)
       .then(response => response.json())
-      .then(player => dispatch(
-        { type: 'SET_CURRENT_PLAYER', payload: player.data.attributes }));
+      .then(player => {
+        dispatch({ type: 'SET_CURRENT_PLAYER', payload: player.data.attributes })});
   };
 }
 

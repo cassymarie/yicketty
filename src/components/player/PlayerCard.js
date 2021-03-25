@@ -6,6 +6,11 @@ import Spinner from 'react-bootstrap/Spinner'
 
 class PlayerCard extends Component {
 
+  componentDidMount(){
+    this.props.getPlayerPhotos(this.props.player.id)
+    this.props.getPlayerCareerStats(this.props.player.id)
+  }
+
   componentWillUnmount(){
     this.props.clearStats()
     this.props.clearImages()

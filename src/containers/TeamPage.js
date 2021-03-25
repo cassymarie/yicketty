@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 // import { Link } from 'react-router-dom'
 import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../actions/MlbActionCreators.js'
 // import { } from '../actions/LineupActionCreators.js'
-import Roster from '../containers/Roster.js'
-import PlayerCard from '../components/player/PlayerCard.js'
+import TeamRoster from './TeamRoster.js'
+// import PlayerCard from '../components/player/PlayerCard.js'
 // import Lineup from '../components/lineup/Lineup.js'
 import TeamHeader from '../components/mlb/TeamHeader.js'
 // import Container from 'react-bootstrap/Container'
@@ -15,7 +15,7 @@ import TeamHeader from '../components/mlb/TeamHeader.js'
 class TeamPage extends Component {
 
     componentDidMount(){
-        const id = this.props.match.params.id
+        const id = parseInt(this.props.match.params.id)
         this.props.setSelectedTeam(id)
         this.props.setTeamRoster(id)
 
@@ -31,13 +31,13 @@ class TeamPage extends Component {
         return(
             <>
             <TeamHeader team={this.props.team}/>
-            <div className="team-card-sect">
+            {/* <div className="team-card-sect"> */}
                 <>
-                <Roster />
+                <TeamRoster />
                 {/* <Lineup /> */}
                 </>
-                { this.props.showCard ? <PlayerCard/> : <></>}
-            </div>
+                {/* { this.props.showCard ? <PlayerCard/> : <></>} */}
+            {/* </div> */}
             </>
         )        
     }
