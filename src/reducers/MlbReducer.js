@@ -7,7 +7,7 @@ const nullTeam =  {
     league: '',
     logo: '',
     name: '',
-    nameFull: '',
+    fullName: '',
     state: '',
     venue: '',
     website: ''

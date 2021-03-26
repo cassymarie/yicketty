@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { submitLineupForm } from '../../actions/LineupActionCreators.js'
 
-const Lineup = (props) => {
+const LineupForm = (props) => {
     const { _1B, _2B, _3B, SS, RF, LF, CF, DH, C } = props
     // console.log(props)
   const onSubmit = (event) => { 
@@ -88,17 +88,17 @@ const Lineup = (props) => {
 }
 
 const mapStateToProps = (state) => ({ 
-  lineup: {...state.lineup},
-  _1B: state.lineup._1B,
-  _2B: state.lineup._2B,
-  _3B: state.lineup._3B,
-  SS: state.lineup.SS,
-  RF: state.lineup.RF,
-  CF: state.lineup.CF,
-  LF: state.lineup.LF,
-  DH: state.lineup.DH,
-  C: state.lineup.C,
+  lineup: {...state.lineup.lineupForm},
+  _1B: state.lineup.lineupForm._1B,
+  _2B: state.lineup.lineupForm._2B,
+  _3B: state.lineup.lineupForm._3B,
+  SS: state.lineup.lineupForm.SS,
+  RF: state.lineup.lineupForm.RF,
+  CF: state.lineup.lineupForm.CF,
+  LF: state.lineup.lineupForm.LF,
+  DH: state.lineup.lineupForm.DH,
+  C: state.lineup.lineupForm.C,
   team: state.mlb.selectedTeam
  })
 
-export default connect(mapStateToProps, { submitLineupForm })(Lineup)
+export default connect(mapStateToProps, { submitLineupForm })(LineupForm)

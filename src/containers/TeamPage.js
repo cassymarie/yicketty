@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
-import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../actions/MlbActionCreators.js'
-// import { } from '../actions/LineupActionCreators.js'
+import Nav from 'react-bootstrap/Nav'
+
+import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer } from '../actions/MlbActionCreators.js'
+
 import TeamRoster from './TeamRoster.js'
 // import PlayerCard from '../components/player/PlayerCard.js'
 // import Lineup from '../components/lineup/Lineup.js'
@@ -19,7 +20,6 @@ class TeamPage extends Component {
         const id = parseInt(this.props.match.params.id)
         this.props.setSelectedTeam(id)
         this.props.setTeamRoster(id)
-
     }
 
     componentWillUnmount(){
@@ -27,11 +27,43 @@ class TeamPage extends Component {
         this.props.toggleCardOFF()
     }
 
+
+  handleSelect(eventKey) {
+    this.props.resetPlayer()
+    switch (eventKey){
+      case 'hitter':
+        return this.props.togglePitcherReset()
+      case 'pitcher':
+        return this.props.togglePitcher()
+      case 'search':
+      default:
+    } 
+  }
+
+  renderTabs = () => {
+    return (
+      <>
+        <Nav variant="tabs" defaultActiveKey="/mlbteams/:id" onSelect={k => this.handleSelect(k)}>
+          <Nav.Item className="player-tabs">
+            <Nav.Link eventKey="hitter">Hitters</Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="player-tabs">
+            <Nav.Link eventKey="pitcher">Pitchers</Nav.Link>
+          </Nav.Item>
+          <Nav.Item className="player-tabs">
+            <Nav.Link  eventKey="search">Search</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </>
+    )
+  }
+
     render(){
 
         return(
             <Container fluid className="team-page">
                 <TeamHeader team={this.props.team}/>
+                {this.renderTabs()}
                 <TeamRoster />
                 {/* <Lineup /> */}
             </Container>
@@ -47,4 +79,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF })(TeamPage)
+export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer })(TeamPage)

@@ -4,12 +4,15 @@ import { connect } from 'react-redux'
 import Container from 'react-bootstrap/Container'
 // import Lineup from '../lineup/Lineup.js'
 import MyLineups from '../../containers/MyLineups.js'
-import { getUserLineups } from '../../actions/LineupActionCreators.js'
+import NewLineupSection from '../../containers/NewLineupSection.js'
+import { getUserLineups, toggleExistingLineups } from '../../actions/LineupActionCreators.js'
+import '../../lineup.css'
 
 class MyPage extends Component {
 
     componentDidMount(){
         this.props.getUserLineups()
+        this.props.toggleExistingLineups()
     }
 
     componentWillUnmount(){
@@ -22,6 +25,7 @@ class MyPage extends Component {
         <Container fluid className="my-page">
             <h2>MY PROFILE PAGE</h2>
             <MyLineups />
+            <NewLineupSection />
         </Container>
         )        
     }
@@ -34,4 +38,4 @@ class MyPage extends Component {
 // })
 
 //mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam }
-export default connect(null, { getUserLineups })(MyPage)
+export default connect(null, { getUserLineups, toggleExistingLineups })(MyPage)

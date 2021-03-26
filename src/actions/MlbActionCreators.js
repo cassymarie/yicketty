@@ -16,7 +16,13 @@ export const getMlbTeams = () => {
     return (dispatch) => {
       fetch(`${API}/mlb/teams`)
         .then(response => response.json())
-        .then(mlb => dispatch({ type: 'SET_MLB_TEAMS', payload: mlb }));
+        .then(mlb => {
+          const teams = mlb.data.map(team => {
+            let mlbTeam = team.attributes
+            delete mlbTeam.lineups
+            return mlbTeam  
+          })
+          dispatch({ type: 'SET_MLB_TEAMS', payload: teams })});
     };
   }
 

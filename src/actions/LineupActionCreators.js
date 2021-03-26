@@ -31,6 +31,10 @@ export const getUserLineups = () => {
       }
 }
 
+export const toggleNewLineup = () => ({type: 'TOGGLE_NEW_LINEUP'})
+export const toggleExistingLineups = () => ({type: 'TOGGLE_LINEUP_OFF'})
+
+
 export const newLineup = () => {
     return (dispatch) => {
         fetch(`${API}/lineups`,{
