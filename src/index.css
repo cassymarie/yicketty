@@ -8,7 +8,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   border: none;
-  height: 100%;
+  height: 100vh;
 }
 
 
@@ -102,35 +102,37 @@ code {
 
 /* MLB TEAM PAGE */
 .team-header {
-  height: 80px;
+  height: 10vh;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.team-info {
-  margin-left: 1.5em;
-}
 
-.team-title {
-  color: white;
-  text-shadow: 1px 1px 1px black;
-  font-size: 40px;
-}
-
-.team-logo {
-  margin: auto;
-  padding-top: 5px;
-  max-height: 70px;
-}
 
 .team-location {
   color: white;
   font-weight: bold;
-  /* text-shadow: .5px .5px .5px black; */
   font-size: 14px;
 }
+.card-placeholder {
+  border: 1px black solid;
+}
+
+
+.team-logo {
+  float: right;
+  margin: auto;
+  padding-top: 5px;
+  height: 1vh;
+}
+
 
 /* Roster */
+.player-tabs {
+  font-size: 20px;
+  margin-top: 5px;
+}
+
 .team-roster {
   background-color: white;
   border: 1px solid black;
@@ -139,20 +141,21 @@ code {
   width: 25%;
 }
 
-.roster-list {
-  padding: 4px;
-}
 
+/* 
 .player-roster{
   display: inline-flex;
   text-align: center;
   border: 1px solid lightgray;
   background-color: white;
   border-radius: 10px;
-  width: 100%;
-  margin: 0px;
-  /* padding: 4px; */
-}
+  width: 75%;
+  margin: 4px;
+  height: 36px;
+  padding: 6px;
+  font-size: 18px;
+  line-height: 24px;
+} */
 
 .available{
   color: black;
@@ -164,26 +167,13 @@ code {
   font-style: italic;
 }
 
-.roster-player {
+/* .roster-player {
   display: inline-flex;
-  font-size: 12px;
   padding: 0px;
-}
+  margin: 0px;
+} */
 
-.roster-number {
-  text-align: center;
-  width: 10%;
-  font-style: italic;
-}
-.roster-name {
-  text-align: left;
-  padding-left: 10px;
-}
-.roster-position {
-  text-align: right;
-  padding-right: 10px;
-  width: 10%;
-}
+
 
 /* Player Card */
 
@@ -191,7 +181,7 @@ code {
   border: 1px black solid;
   background-color: white;
   margin: 20px;
-  width: 50%;
+  width: 100%;
   height: fit-content;
 }
 
@@ -263,3 +253,8 @@ code {
   border: none;
   border-radius: 10px;
 }
+
+.container-fluid {
+  padding: 0px
+}
+

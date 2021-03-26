@@ -1,0 +1,1 @@
+export const setNavTitle = (title) => ({type: 'SET_NAV_TITLE', payload: title })

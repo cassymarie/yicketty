@@ -1,39 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import Container from 'react-bootstrap/Container'
+// import Lineup from '../lineup/Lineup.js'
+import MyLineups from '../../containers/MyLineups.js'
+import { getUserLineups } from '../../actions/LineupActionCreators.js'
 
 class MyPage extends Component {
 
     componentDidMount(){
-        // const id = this.props.match.params.id
-        // this.props.setSelectedTeam(id)
-        // this.props.setTeamRoster(id)
+        this.props.getUserLineups()
     }
 
     componentWillUnmount(){
-        // this.props.unSelectTeam()
-    }
-
-    renderTeamInfo =() => {
-        return(
-            <>
-            <div className="col-xs-2">
-
-            </div>
-            </>
-        )
+       
     }
 
     render(){
 
         return(
-            <div className="container-fluid">
-                <h2>MY PROFILE PAGE</h2>
-                {/* {this.renderTeamInfo()} */}
-                <Link to={`/mlbteams`}><button>View Teams</button></Link>
-                <Link to={`/mlbteams`}><button>Add New Lineup</button></Link>
-                <Link to={`/`}><button>Home</button></Link>
-            </div>
+        <Container fluid className="my-page">
+            <h2>MY PROFILE PAGE</h2>
+            <MyLineups />
+        </Container>
         )        
     }
 
@@ -45,4 +34,4 @@ class MyPage extends Component {
 // })
 
 //mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam }
-export default connect()(MyPage)
+export default connect(null, { getUserLineups })(MyPage)

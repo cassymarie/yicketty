@@ -1,8 +1,10 @@
 const API = "http://localhost:3000"
 
 export const addMlbTeams = () => ({type: 'MLB_TEAMS'})
+
 export const toggleCardON = () => ({type: 'TOGGLE_PLAYER_CARD', payload: true })
 export const toggleCardOFF = () => ({type: 'TOGGLE_PLAYER_CARD', payload: false })
+
 export const togglePitcher = () => ({type: 'TOGGLE_PITCHER'})
 export const togglePitcherReset = () => ({type: 'TOGGLE_PITCHER_RESET'})
 
@@ -51,7 +53,15 @@ export const getPlayerCareerStats = (id) => {
   return (dispatch) => {
     fetch(`${API}/mlb/player/${id}/career`)
       .then(response => response.json())
-      .then(stats => dispatch({ type: 'SET_PLAYER_STATS', payload: stats.stats }));
+      .then(stats => {
+        const playerStats = stats.stats
+        const statsPayload = []
+        // debugger
+        playerStats.forEach(stat => {if(stat){ Object.keys(stat).includes("player_id") ? 
+              statsPayload.push(stat) : stat.forEach(trade => statsPayload.push(trade))
+            }})
+
+        dispatch({ type: 'SET_PLAYER_STATS', payload: statsPayload })});
   };
 } 
 

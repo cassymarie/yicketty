@@ -21,10 +21,6 @@ class App extends Component {
   }
 
   render() {
-    // const color = this.props.mlbTeam.id ? this.props.mlbTeam.color1 : '#fff'
-
-    
-
     return (
       //, backgroundImage: `url('https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=')`
       //style={{backgroundColor:`${color}`}}
@@ -37,10 +33,10 @@ class App extends Component {
                 <Route path="/mlbteams/:id/player-search" component={TeamPage}/>
                 <Route path="/mlbteams" component={MlbTeams}/>
                 <Route path="/mvp/lineups" component={MyPage}/>
-                <Route path="/home" component={Home}/>
+                <Route path="/" component={Home}/>
               </Switch>
               {/* <Login/> */}
-            }
+            {/* } */}
           </Container>
     );
   }

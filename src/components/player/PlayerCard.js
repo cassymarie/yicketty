@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PlayerCardStatsRow from './PlayerCardStatsRow.js'
 import { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF } from '../../actions/MlbActionCreators.js'
 import Spinner from 'react-bootstrap/Spinner'
+import Table from 'react-bootstrap/Table'
 
 class PlayerCard extends Component {
 
@@ -12,10 +13,7 @@ class PlayerCard extends Component {
   }
 
   componentWillUnmount(){
-    this.props.clearStats()
-    this.props.clearImages()
     this.props.resetPlayer()
-    this.props.toggleCardOFF()
   }
 
   loading = () => {
@@ -28,6 +26,7 @@ class PlayerCard extends Component {
 
   statsInfo = () => {
     const statsBySeason = this.props.stats
+
     return(
       <tbody>
         {statsBySeason.length === 'undefined' ? this.loading() : statsBySeason.map(stat => <PlayerCardStatsRow {...stat}/>) }
@@ -35,7 +34,7 @@ class PlayerCard extends Component {
     )
   }
 
-  statsHeader = () => {
+  statsHittingHeader = () => {
     return(
       <thead >
         <tr >
@@ -49,6 +48,25 @@ class PlayerCard extends Component {
           <th className="">AVG</th>
           <th className="">OBP</th>
           <th className="">OPS</th>
+        </tr>
+      </thead>
+    )
+  }
+
+  statsPitchingHeader = () => {
+    return(
+      <thead >
+        <tr >
+          <th className="stats-name"></th>
+          <th className="">W</th>
+          <th className="">L</th>
+          <th className="">ERA</th>
+          <th className="">G</th>
+          <th className="">GS</th>
+          <th className="">SV</th>
+          <th className="">IP</th>
+          <th className="">SO</th>
+          <th className="">WHIP</th>
         </tr>
       </thead>
     )
@@ -69,11 +87,11 @@ class PlayerCard extends Component {
           </>
         </span>
         </>
-        
-        <table className="table table-striped stats-table">
-          {this.statsHeader()}
+        {/* className="table table-striped stats-table" */}
+        <Table responsive="md" borderless hover size="sm" striped>
+          {this.props.pitcherView ? this.statsPitchingHeader() : this.statsHittingHeader()}
           {this.statsInfo()}
-        </table>
+        </Table>
       </div>
     )
   }
@@ -83,7 +101,8 @@ class PlayerCard extends Component {
 const mapStateToProps = (state) => ({
   player: state.mlb.currentPlayer,
   images: state.mlb.playerImages,
-  stats: state.mlb.playerStats
+  stats: state.mlb.playerStats,
+  pitcherView: state.mlb.pitcherToggle
 })
 
 

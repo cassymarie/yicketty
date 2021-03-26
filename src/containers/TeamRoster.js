@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerRosterRow from '../components/player/PlayerRosterRow'
-import { togglePitcher, togglePitcherReset } from '../actions/MlbActionCreators.js'
+import { togglePitcher, togglePitcherReset, resetPlayer } from '../actions/MlbActionCreators.js'
 import Nav from 'react-bootstrap/Nav'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Container from 'react-bootstrap/Container'
 import PlayerCard from '../components/player/PlayerCard.js'
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+// import Col from 'react-bootstrap/Col'
 
 class TeamRoster extends Component {
-  handleSelect(eventKey, event) {
-    console.log('selected', eventKey)
+
+  handleSelect(eventKey) {
+    this.props.resetPlayer()
+    
     switch (eventKey){
       case 'hitter':
         return this.props.togglePitcherReset()
@@ -21,19 +23,18 @@ class TeamRoster extends Component {
       default:
     } 
   }
-  //this.props.togglePitcherReset()
 
   renderTabs = () => {
     return (
       <>
         <Nav variant="tabs" defaultActiveKey="/mlbteams/:id" onSelect={k => this.handleSelect(k)}>
-          <Nav.Item>
+          <Nav.Item className="player-tabs">
             <Nav.Link eventKey="hitter">Hitters</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="player-tabs">
             <Nav.Link eventKey="pitcher">Pitchers</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
+          <Nav.Item className="player-tabs">
             <Nav.Link  eventKey="search">Search</Nav.Link>
           </Nav.Item>
         </Nav>
@@ -46,23 +47,22 @@ class TeamRoster extends Component {
     this.props.roster.filter(player => player.position !== "P")
 
     return (
+      <>
+      <h4>{this.props.toggle ? "Pitchers" : "Hitters"}</h4>
       <ListGroup className="roster-list">
         {list.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
       </ListGroup>
+      </>
     )
   }
 
   render(){
     return(
-      <Container>
+      <Container fluid>
         {this.renderTabs()}
         <Row>
-          <Col xs={4}>
-            {this.renderList()}
-          </Col>
-          <Col  xs={8}>
-            {this.props.showCard ? <PlayerCard key={this.props.id} {...this.props}/> : <></> }
-          </Col>
+          {this.props.showCard ? <><PlayerCard key={this.props.id} {...this.props}/></> : <div classname="card-placeholder"></div> }
+          {this.renderList()}
         </Row>
       </Container>
     )
@@ -79,4 +79,4 @@ const mapStateToProps = (state) => ({
     showCard: state.mlb.cardToggle
   })
 
-export default connect(mapStateToProps, { togglePitcher, togglePitcherReset })(TeamRoster);
+export default connect(mapStateToProps, { togglePitcher, togglePitcherReset, resetPlayer })(TeamRoster);

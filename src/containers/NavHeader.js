@@ -11,9 +11,12 @@ class NavHeader extends Component {
         <Navbar bg="dark" variant="dark" sticky="top" bsPrefix="nav-header navbar">
             <Navbar.Brand bsPrefix="header-brand" href="home">Yicketty</Navbar.Brand>
             <Nav className="nav-links">
-                <Nav.Link href="/mlbTeams">MLB Teams</Nav.Link>
+                <Nav.Link href="/mlbTeams">Home</Nav.Link>
                 <Nav.Link href="/mvp/lineups">Profile</Nav.Link>
                 <Nav.Link>Play Game</Nav.Link>
+            </Nav>
+            <Nav>
+                <Nav.Link disabled>{}</Nav.Link>
             </Nav>
         </Navbar>
         )
