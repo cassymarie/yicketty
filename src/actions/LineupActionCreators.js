@@ -34,20 +34,60 @@ export const getUserLineups = () => {
 export const toggleNewLineup = () => ({type: 'TOGGLE_NEW_LINEUP'})
 export const toggleExistingLineups = () => ({type: 'TOGGLE_LINEUP_OFF'})
 
-
-export const newLineup = () => {
+export const newLineup = (lineupData, lineupRoster) => {
     return (dispatch) => {
-        fetch(`${API}/lineups`,{
+        fetch(`${API}/lineups`, {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': localStorage.token
-            }})
-            .then(response => response.json())
-            .then(lineup => {
-                dispatch({ type: 'NEW_LINEUP', payload: lineup })})
-            }
-      }
+            },
+            body: JSON.stringify(lineupData)
+        })
+        .then(response => response.json())
+        .then(lineup => {
+            lineup.roster = []
+            lineupRoster.forEach(player => {
+                fetch(`${API}/lineups/${lineup.id}/players`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.token
+                    },
+                    body: JSON.stringify(player)
+                })
+                .then(response => response.json())
+                .then(player => {
+                    lineup.roster.push(player)
+                })
+            })
+            return lineup
+        })
+        .then(lineup =>  dispatch({ type: 'NEW_LINEUP', payload: lineup }))
+    }
+}
 
+export const createLineupPlayers = (lineupId, lineupOrderArray) => {
+    const lineupRoster = []
+    lineupOrderArray.forEach(lineupPlayer => {
+        fetch(`${API}/lineups/${lineupId}/players`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            },
+            body: JSON.stringify(lineupPlayer)
+        })
+        .then(response => response.json())
+        .then(player => { 
+            debugger
+            lineupRoster.push(player)
+        })
+    })
+    return (dispatch) => {
+        dispatch({ type: 'NEW_LINEUP_ROSTER', payload: lineupRoster })
+    }
+}
 
 export const submitLineupForm = (form) => {
     debugger

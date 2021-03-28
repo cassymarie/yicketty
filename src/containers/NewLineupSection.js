@@ -7,6 +7,7 @@ import LineupTeamForm from '../components/lineup/LineupTeamForm.js'
 import LineupForm from '../components/lineup/LineupForm.js'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import TeamRoster from './TeamRoster.js'
 import '../teamPage.css'
@@ -23,24 +24,24 @@ class NewLineupSection extends Component {
     }
 
 
-  handleSelect(eventKey) {
-    this.props.resetPlayer()
-    switch (eventKey){
-      case 'hitter':
-        return this.props.togglePitcherReset()
-      case 'pitcher':
-        return this.props.togglePitcher()
-      case 'search':
-      default:
-    } 
-  }
+  // handleSelect(eventKey) {
+  //   this.props.resetPlayer()
+  //   switch (eventKey){
+  //     case 'hitter':
+  //       return this.props.togglePitcherReset()
+  //     case 'pitcher':
+  //       return this.props.togglePitcher()
+  //     case 'search':
+  //     default:
+  //   } 
+  // }
 
     render(){
 
         return(
             <Container fluid className="team-page">
-              { this.props.newToggle ? <LineupTeamForm/> : <></> }
-              { this.props.team.id ? <Row> <TeamRoster/> <LineupForm/> </Row> : <></> }
+              { this.props.newToggle ? <Col xs={6}><LineupTeamForm/></Col> : <></> }
+              { this.props.team.id ? <Row> <Col><TeamRoster/></Col><Col><LineupForm/></Col> </Row> : <></> }
             </Container>
         )        
     }

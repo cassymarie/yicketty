@@ -12,6 +12,8 @@ export const resetPlayer = () => ({type: 'UNSELECT_PLAYER'})
 export const clearStats = () => ({type: 'CLEAR_PLAYER_STATS'})
 export const clearImages = () => ({type: 'CLEAR_PLAYER_IMAGES'})
 
+export const filteredRoster = (list) => ({type: 'FILTERED_ROSTER', payload: list})
+
 export const getMlbTeams = () => {
     return (dispatch) => {
       fetch(`${API}/mlb/teams`)

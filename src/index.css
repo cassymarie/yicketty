@@ -180,7 +180,7 @@ code {
 .player-card {
   border: 1px black solid;
   background-color: white;
-  margin: 20px;
+  /* margin: 20px; */
   width: 100%;
   height: fit-content;
 }

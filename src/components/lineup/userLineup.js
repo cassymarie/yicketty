@@ -6,7 +6,6 @@ import { Pencil } from 'react-bootstrap-icons'
 import { Play } from 'react-bootstrap-icons'
 
 const UserLineup = (props) => {
-    console.log(props)
 
   const listRoster = () => {
     return (props.roster.map(player => 

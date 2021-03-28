@@ -1,22 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { submitLineupForm } from '../../actions/LineupActionCreators.js'
+import { submitLineupForm, newLineup } from '../../actions/LineupActionCreators.js'
 
 const LineupForm = (props) => {
-    const { _1B, _2B, _3B, SS, RF, LF, CF, DH, C } = props
-    // console.log(props)
-  const onSubmit = (event) => { 
+    const { _1B, _2B, _3B, SS, OF1, OF2, OF3, DH, C } = props.lineup
+
+    const onSubmit = (event) => { 
         event.preventDefault()
         console.log("You are submitting the Lineup")
         const order = []
-        // const lineupForm = {}
         const inputs = document.forms["lineup-form"].getElementsByTagName("input")
             for (let i = 0; i < inputs.length-1; i++){
-                // order.push(inputs[i].id)
-                order.push({position: i+1, mlb_player_id: inputs[i].id})
-            }
-        // debugger
-        props.submitLineupForm({mlb_team_id: props.team.id, lineup_players: order})
+                order.push({position: i+1, mlb_player_id: inputs[i].name, dh:(inputs[i].id === "DH" ? true : false)})
+            }                           
+        props.newLineup({mlb_team_id: props.team.id, season: 2020}, order)
      }
 
   return(
@@ -27,55 +24,55 @@ const LineupForm = (props) => {
           <>
           <div class="lineup-group">
               <div class="lineup-position">1B</div>
-              <input type="text" class="lineup-name" value={(_1B !== null ? _1B.nameFull : '')} id="_1B" name="_1B"/>
+              <input type="text" class="lineup-name" value={(_1B !== null ? _1B.nameFull : '')} id="_1B" name={(_1B !== null ? _1B.id : '1B')}/>
           </div>
           </>
           <> 
           <div class="lineup-group">
               <div class="lineup-position">2B</div>
-              <input type="text" class="lineup-name" value={(_2B !== null ? _2B.nameFull : '')} id="_2B" name="_2B"/>
+              <input type="text" class="lineup-name" value={(_2B !== null ? _2B.nameFull : '')} id="_2B" name={(_2B !== null ? _2B.id : '2B')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
               <div class="lineup-position">3B</div>
-              <input type="text" class="lineup-name" value={(_3B !== null ? _3B.nameFull : '')} id="_3B" name="_3B"/>
+              <input type="text" class="lineup-name" value={(_3B !== null ? _3B.nameFull : '')} id="_3B" name={(_3B !== null ? _3B.id : '3B')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
               <div class="lineup-position">SS</div>
-              <input type="text" class="lineup-name" value={(SS !== null ? SS.nameFull : '')} id="SS" name="SS"/>
+              <input type="text" class="lineup-name" value={(SS !== null ? SS.nameFull : '')} id="SS" name={(SS !== null ? SS.id : 'SS')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
-              <div class="lineup-position">RF</div>
-              <input type="text" class="lineup-name" value={(RF !== null ? RF.nameFull : '')} id="RF" name="RF"/>
+              <div class="lineup-position">OF</div>
+              <input type="text" class="lineup-name" value={(OF1 !== null ? OF1.nameFull : '')} id="OF1" name={(OF1 !== null ? OF1.id : 'OF')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
-              <div class="lineup-position">CF</div>
-              <input type="text" class="lineup-name" value={(CF !== null ? CF.nameFull : '')} id="CF" name="CF"/>
+              <div class="lineup-position">OF</div>
+              <input type="text" class="lineup-name" value={(OF2 !== null ? OF2.nameFull : '')} id="OF2" name={(OF2 !== null ? OF2.id : 'OF')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
-              <div class="lineup-position">LF</div>
-              <input type="text" class="lineup-name" value={(LF !== null ? LF.nameFull : '')} id="LF" name="LF"/>
+              <div class="lineup-position">OF</div>
+              <input type="text" class="lineup-name" value={(OF3 !== null ? OF3.nameFull : '')} id="OF3" name={(OF3 !== null ? OF3.id : 'OF')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
               <div class="lineup-position">DH</div>
-              <input type="text" class="lineup-name" value={(DH !== null ? DH.nameFull : '')} id="DH" name="DH"/>
+              <input type="text" class="lineup-name" value={(DH !== null ? DH.nameFull : '')} id="DH" name={(DH !== null ? DH.id : 'DH')}/>
           </div>
           </>
           <>
           <div class="lineup-group">
               <div class="lineup-position"> C</div>
-              <input type="text" class="lineup-name" value={(C !== null ? C.nameFull : '')} id="C" name="C"/>
+              <input type="text" class="lineup-name" value={(C !== null ? C.nameFull : '')} id="C" name={(C !== null ? C.id : 'C')}/>
           </div>
           </>  
         <br/>
@@ -89,16 +86,9 @@ const LineupForm = (props) => {
 
 const mapStateToProps = (state) => ({ 
   lineup: {...state.lineup.lineupForm},
-  _1B: state.lineup.lineupForm._1B,
-  _2B: state.lineup.lineupForm._2B,
-  _3B: state.lineup.lineupForm._3B,
-  SS: state.lineup.lineupForm.SS,
-  RF: state.lineup.lineupForm.RF,
-  CF: state.lineup.lineupForm.CF,
-  LF: state.lineup.lineupForm.LF,
-  DH: state.lineup.lineupForm.DH,
-  C: state.lineup.lineupForm.C,
-  team: state.mlb.selectedTeam
+  team: state.mlb.selectedTeam,
+  newLineup: state.lineup.newLineup
+  
  })
 
-export default connect(mapStateToProps, { submitLineupForm })(LineupForm)
+export default connect(mapStateToProps, { submitLineupForm, newLineup })(LineupForm)

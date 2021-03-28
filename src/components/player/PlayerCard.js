@@ -72,22 +72,28 @@ class PlayerCard extends Component {
     )
   }
 
-  render(){
+  cardHeader = () => {
     const background = this.props.images.length === 0 ? 'https://via.placeholder.com/150' : this.props.images.image
 
+    return (
+      <>
+      <span className="player-card-header" style={{ backgroundImage: `url(${background})`}}>
+        <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
+        <>
+        <div className="player-card-title">
+          <p>#{this.props.player.jersey}</p><p>{this.props.player.nameFull}</p><p>{this.props.player.position}</p>
+        </div>
+        </>
+      </span>
+      </>
+    )
+  }
+
+  render(){
+ 
     return(
       <div className="player-card">
-        <>
-        <span className="player-card-header" style={{ backgroundImage: `url(${background})`}}>
-          <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
-          <>
-          <div className="player-card-title">
-            <p>#{this.props.player.jersey}</p><p>{this.props.player.nameFull}</p><p>{this.props.player.position}</p>
-          </div>
-          </>
-        </span>
-        </>
-        {/* className="table table-striped stats-table" */}
+        {this.cardHeader()}
         <Table responsive="md" borderless hover size="sm" striped>
           {this.props.pitcherView ? this.statsPitchingHeader() : this.statsHittingHeader()}
           {this.statsInfo()}

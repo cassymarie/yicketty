@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import UserLineup from '../components/lineup/userLineup.js'
 import { toggleNewLineup } from '../actions/LineupActionCreators.js' 
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
+
 
 class MyLineups extends Component {
 
     render(){
         return(
-            <>
             <Table>
                 <thead>
                     <tr>
@@ -20,8 +19,6 @@ class MyLineups extends Component {
                     {this.props.lineups.map(lineup => <UserLineup key={lineup.id} {...lineup}/> )}
                 </tbody>
             </Table>
-            { this.props.newToggle ? <></> : <Button variant="secondary" onClick={this.props.toggleNewLineup}>New Lineup</Button> }
-            </>
         )        
     }
 }

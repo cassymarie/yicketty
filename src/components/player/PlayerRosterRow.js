@@ -1,28 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+// import PlayerCard from '../player/PlayerCard.js'
 import { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../actions/MlbActionCreators.js'
 import { handleLineupChange } from '../../actions/LineupActionCreators.js'
-
-import ListGroup from 'react-bootstrap/ListGroup'
-import Button from 'react-bootstrap/Button'
-import { ArrowRight } from 'react-bootstrap-icons'
-
-// import Row from 'react-bootstrap/Row'
+import { ArrowRight, CardList } from 'react-bootstrap-icons'
+import { Card, Accordion, Button, ListGroup } from 'react-bootstrap'
+import PlayerCard from '../player/PlayerCard.js'
 
 
 class PlayerRosterRow extends Component {
 
   handleClick = (e) => {
-    // this.props.resetPlayer()
 
-    // e.stopPropagation()
-    
-    // const playerId = e.target.tagName === 'P' ? e.target.parentNode.id : e.target.id
+    e.stopPropagation()
+    const playerId = (e.target.tagName === 'P' || e.target.tagName === 'svg') ? e.target.parentNode.id : e.target.tagName === 'path' ? e.target.parentElement.parentElement.id : e.target.id
 
-    // this.props.setCurrentPlayer(playerId)
-    // // this.props.getPlayerPhotos(playerId)
+    this.props.showCard ? this.props.resetPlayer() : this.props.setCurrentPlayer(playerId)
     // this.props.getPlayerCareerStats(playerId)
     // this.props.toggleCardON()
+
   }
 
   teamRosterRow = () => {
@@ -31,60 +27,69 @@ class PlayerRosterRow extends Component {
         <p onClick={this.handleClick}  className="roster-number">{this.props.jersey}</p>
         <p onClick={this.handleClick}  className="roster-name">{this.props.nameFull}</p>
         <p onClick={this.handleClick}  className="roster-position">{this.props.position}</p>
-    </ListGroup.Item>
-    )
-  }
-
-  lineupRosterRow = () => {
-    console.log(this.props)
-    const outfield = ['RF','CF','LF']
-    const position = outfield.includes(this.props.position) ? "OF" : this.props.position
-    return(
-        <ListGroup.Item id={this.props.id} bsPrefix="lineup-roster-row">
-          <p className="roster-number">{this.props.jersey}</p>
-          <p className="roster-name">{this.props.nameFull}</p>
-          <p className="roster-position">{position}</p>
-          <Button variant="light"><ArrowRight short/></Button>
       </ListGroup.Item>
     )
   }
 
+  statePosition = (position) => {
+    return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
+  }
 
-  // renderPlayers = () => {
-  // return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
-  // }
+  addToLineUp= (e) => {
 
-  // statePosition = (position) => {
-  //   return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
-  // }
+    e.stopPropagation()
+    const row = e.currentTarget.parentElement
+    let position = this.statePosition(row.children[1].textContent)
+    let existing = null
 
-  // addToLineUp= (e) => {
-  //   const row = e.target.parentElement
-  //   let position = this.statePosition(row.children[2].innerText)
-  //   row.className = "player-roster unavailable"
-  //   const existing = this.props.lineup[position]
+    if (position === 'OF') {
+      let of = this.props.outfield
+      const posIndex = of.filter(x => x !== null).length
+      
+      posIndex < 3 ? position = `OF${posIndex + 1}` : existing = 'Full'
+    } else {
+      existing = this.props.form[position]
+    }
 
-  //   if (existing !== null) {
-  //     if (this.props.lineup.DH === null) {
-  //       position = 'DH'
-  //     } else {
-  //       document.getElementById(existing.id).className = "player-roster available"
-  //     }
-  //   }
+    row.className = "player-roster unavailable"
 
-  //   this.props.handleLineupChange(position, this.props)
-  // }
+    if (existing !== null) {
+      if (this.props.form.DH === null) {
+        position = 'DH'
+      } else {
+        document.getElementById(existing.id).className = "player-roster available"
+      }
+    }
+
+    this.props.handleLineupChange(position, {id: this.props.id, nameFull: this.props.nameFull, position })
+  }
+
+  lineupRosterRow = () => {
+    const outfield = ['RF','CF','LF']
+    const position = outfield.includes(this.props.position) ? "OF" : this.props.position
+    return(
+      <Card>
+        <ListGroup.Item id={this.props.id} bsPrefix="lineup-roster-row">
+        <Accordion.Toggle as={Button} bsPrefix="lineup-roster-card" variant="light" eventKey={this.props.id} onClick={this.handleClick}  id={this.props.id}>
+          <CardList className="lineup-btn-card" width="2em" height="2em"/>
+        </Accordion.Toggle>
+          <div className="lineup-roster-position">{position}</div>
+          <div className="lineup-roster-name">{this.props.nameFull}</div>
+          <Button variant="light" onClick={this.addToLineUp}><ArrowRight short/></Button>
+        </ListGroup.Item>
+        <Accordion.Collapse  eventKey={this.props.id}>
+          {this.props.showCard ? <><PlayerCard eventKey={this.props.id} key={this.props.id}/></> : <div classname="card-placeholder"></div>}
+        </Accordion.Collapse>
+      </Card>
+    )
+  }
+
+
+  
 
     render(){
       return (
          this.props.toggleLineup ? this.lineupRosterRow() : this.teamRosterRow()
-        // <ListGroup.Item action onClick={this.handleClick} bsPrefix="player-roster" id={this.props.id}>
-        //   {/* <Row> */}
-        //     <p onClick={this.handleClick}  className="roster-number">{this.props.jersey}</p>
-        //     <p onClick={this.handleClick}  className="roster-name">{this.props.nameFull}</p>
-        //     <p onClick={this.handleClick}  className="roster-position">{this.props.position}</p>
-        //   {/* </Row> */}
-        // </ListGroup.Item>
       )
     }
 }
@@ -92,8 +97,15 @@ class PlayerRosterRow extends Component {
 const mapStateToProps = (state) => ({
   lineup: state.lineup,
   togglePitcher: state.mlb.togglePitcher,
-  toggleLineup: state.lineup.toggleLineup
+  toggleLineup: state.lineup.toggleLineup,
+  form: state.lineup.lineupForm,
+  player: state.mlb.currentPlayer,
+  outfield: [state.lineup.lineupForm.OF1,state.lineup.lineupForm.OF2,state.lineup.lineupForm.OF3],
+  showCard: state.mlb.cardToggle
 })
 
-export default connect(mapStateToProps, { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF,handleLineupChange })(PlayerRosterRow)
+export default connect(mapStateToProps, { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF, handleLineupChange })(PlayerRosterRow)
 
+
+
+  

@@ -4,9 +4,9 @@ const initialLineupForm = {
     _3B: null,
     SS: null,
     C: null,
-    RF: null,
-    CF: null,
-    LF: null,
+    OF1: null,
+    OF2: null,
+    OF3: null,
     DH: null
 }
 
@@ -14,7 +14,8 @@ const initialLineupState =  {
     lineupForm: initialLineupForm,
     lineupFormOrder: [],
     usersLineups: [],
-    toggleLineup: false
+    toggleLineup: false,
+    newLineup: ''
 }
 
 const lineupReducer = (state=initialLineupState, action) => {
@@ -26,7 +27,7 @@ const lineupReducer = (state=initialLineupState, action) => {
         case 'USERS_LINEUPS':
             return {...state, usersLineups: action.payload }
         case 'LINEUP_CHANGE':
-            return {...state, [action.payload.name]: action.payload.value}
+            return {...state, lineupForm: { ...state.lineupForm, [action.payload.name]: action.payload.value}}
         case 'TOGGLE_NEW_LINEUP':
             return {...state, toggleLineup: true}
         case 'TOGGLE_LINEUP_OFF':

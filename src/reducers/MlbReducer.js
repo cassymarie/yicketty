@@ -17,6 +17,7 @@ const baseImages = {headshot: 'https://st2.depositphotos.com/4111759/12123/v/600
 const initialMlbState = {
     teams: [],
     teamRoster: [],
+    filteredRoster: [],
     selectedTeam: nullTeam,
     currentPlayer: null,
     playerImages: baseImages,
@@ -51,6 +52,8 @@ const mlbReducer = (state=initialMlbState, action) => {
                 return {...state, playerStats: []}
             case 'SET_PLAYER_IMAGES':
                 return {...state, playerImages: action.payload }
+            case 'FILTERED_ROSTER':
+                return {...state, filteredRoster: action.payload }
             case 'CLEAR_PLAYER_IMAGES':
                 return {...state, playerImages: '' }
             default: 
