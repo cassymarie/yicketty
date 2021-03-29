@@ -1,0 +1,244 @@
+#stadium{
+    position:absolute;
+}
+
+#field{ 
+    position:absolute;
+    top:-110px;
+    left:145px;
+    height:700px;
+    width:700px;
+    border-radius:1% 100% 1% 1%;
+    border:1px solid green;
+    background-color:green;
+   -webkit-transform: rotate(-45deg);
+}
+#in-field{ 
+    position:absolute;
+    top:170px;
+    left:265px;
+    height:450px;
+    width:450px;
+    border-radius:1% 50% 1% 1%;
+    border:1px solid #836539; /*#9b7653; */
+    background-color:#836539; /*#9b7653;*/
+   -webkit-transform: rotate(-45deg);
+}
+#base-lines{
+    position:absolute;
+    top: -120px;
+    left: 155px;
+    height:670px;
+    width:670px;
+    border-left:2px solid white;
+    border-bottom:2px solid white;
+    -webkit-transform: rotate(-45deg);
+}
+#in-field-grass{
+    position:absolute;
+    top: 330px;
+    left: 359px;
+    height:260px;
+    width:260px;
+    border:2px solid green;
+    background-color:green;
+    -webkit-transform: rotate(-45deg);
+}
+.base{
+    position:absolute;
+    height:13px;
+    width:13px;
+    -webkit-transform: rotate(-45deg);
+    border:1px solid white;
+    background-color:white;
+    z-index: 1000;
+}
+#first-base{
+    top:450px;
+    left:706px;
+}
+#second-base{
+    top:231px;
+    left:484px;
+}
+#thrid-base{
+    top:450px;
+    left:262px;
+}
+#home-plate{
+    position:absolute;
+    height:7px;
+    width:13px;
+    top:678px;
+    left:485px;
+    border:1px solid white;
+    background-color:white;
+}
+#home-plate:before, #home-plate:after{
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+#home-plate:before{
+	border-top-color:white;
+	border-width: 8px;
+	left: 50%;
+	margin-left: -9.5px;
+}
+.home-plate-pulse{
+    /* Copy position attributes from #home-plate.
+       Needs to be separate to allow batters boxes to cover edges of home plate */
+    position:absolute;
+    height:7px;
+    width:13px;
+    top:678px;
+    left:485px;
+}
+#pitchers-mound{ 
+    position:absolute;
+    top:420px;
+    left:450px;
+    height:80px;
+    width:80px;
+    border-radius:100% 100% 100% 100%;
+    -webkit-transform: rotate(-45deg);
+     border:1px solid #836539;
+    background-color:#836539;
+}
+#pitchers-plate{ 
+    position:absolute;
+    top:458px;
+    left:482px;
+    height:5px;
+    width:16px;
+    border:1px solid white;
+    background-color:white;
+}
+#vertical{
+    position:absolute;
+    top:14px;
+    left:491px;
+    height:1115px;
+    width:1px;
+    border-left:1px solid black;
+}
+.half-circle{    
+    position:absolute;
+    height:40px;
+    width: 40px;
+    -webkit-transform: rotate(-45deg);
+    border:1px solid #836539;
+    background-color:#836539;
+}
+#third-circle{
+    top:440px;
+    left:300px;
+    border-radius:1% 1% 100% 1%;
+}
+#first-circle{
+    top:440px;
+    left:642px;
+    border-radius:100% 1% 1% 1%;
+}
+#second-circle{
+    top:275px;
+    left:470px;
+    border-radius:1% 1% 1% 100%;
+}
+.batters-box{
+    position:absolute;
+    height:25px;
+    width: 15px;
+    border:2px solid white;
+    background-color:#836539;
+      /*-6px 6px red,
+      -6px -6px red,
+      6px -6px red;*/
+    opacity: 1.0; /* Needed so that opacity for pulse doesn't cause issues */
+    top: 670px;
+}
+#batters-box-right{
+    box-shadow: 6px 0 #836539; /* Cover up the base line */
+    left:461px;
+}
+#batters-box-left{
+  box-shadow: -6px 0 #836539; /* Cover up the base line */
+    left:503px;
+}
+#batting-circle{ 
+    position:absolute;
+    top:634px;
+    left:440px;
+    height:100px;
+    width:100px;
+    border-radius:100% 100% 100% 100%;
+   -webkit-transform: rotate(-45deg);
+     border:1px solid #836539;
+    background-color:#836539;
+}
+#first-base-thing{
+    top:430px;
+    left:667px;
+    position:absolute;
+    height:170px;
+    width:13px;
+    -webkit-transform: rotate(45deg);
+    border-right:2px solid white;
+    border-bottom:2px solid white;
+}
+
+.mowed-grass{
+     background-color: #ac0;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+background-image: -ms-linear-gradient(0deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+background-image: -o-linear-gradient(0deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+background-image: linear-gradient(0deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    -webkit-background-size: 250px 250px;
+    -moz-background-size: 50px 50px;
+    background-size: 200px 200px;
+/* via http://lea.verou.me/2010/12/checkered-stripes-other-background-patterns-with-css3-gradients/ */
+
+    background-color:#ac0
+}
+
+.action-area{
+	  position: relative;
+	  z-index: 2000;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    margin: -50px;
+}
+
+.pulse {
+    z-index: 1000;
+    /*background: red;*/
+    border: 1px solid #999;
+    /*border-color: blue;*/
+    border-radius: 100%;
+    margin: -8px; /* -0.5 * baseWidth - baseBorder */
+    width: 27px; /*  2 * baseWidth + baseBorder */
+    height: 27px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0.0;
+}
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(1.0, 1.0); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(2.0, 2.0); opacity: 0.0;}
+}
+@keyframes pulsate {
+    0% {-webkit-transform: scale(1.0, 1.0); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(2.0, 2.0); opacity: 0.0;}
+}

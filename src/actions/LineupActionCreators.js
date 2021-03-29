@@ -90,7 +90,6 @@ export const createLineupPlayers = (lineupId, lineupOrderArray) => {
 }
 
 export const submitLineupForm = (form) => {
-    debugger
     return (dispatch) => {
         fetch(`${API}/lineup_players`, {
             method: 'POST',
@@ -109,3 +108,16 @@ export const submitLineupForm = (form) => {
     }
 }
 
+export const removeUsersLineup = (id) => {
+    return (dispatch) => {
+        fetch(`${API}/lineups/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': localStorage.token
+            }
+        })
+        .then(response => response.json())
+        .then(deleted => { dispatch({ type: 'UPDATE_LINEUP_DELETE', payload: deleted.id})}
+        )
+    }
+}

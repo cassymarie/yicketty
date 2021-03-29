@@ -12,7 +12,7 @@ class MyLineups extends Component {
             <Table>
                 <thead>
                     <tr>
-                        <th>Team/Season</th><th>Roster</th><th>Edit</th><th>Play with Roster</th>
+                        <th>Team/Season</th><th>Roster</th><th>Delete</th><th>Play with Roster</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -20,6 +20,27 @@ body {
   background-image: url("https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=")
 }
 
+.home-page {
+  background-image: url("https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=");
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+}
+
+.home-page-title {
+  font-size: 40px;
+  padding-top: 120px;
+  color: purple;
+  width: 100%;
+}
+
+.home-page-description {
+  margin: auto;
+  font-size: 20px;
+  padding-top: 30px;
+  width: 40%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -121,9 +142,9 @@ code {
 
 .team-logo {
   float: right;
-  margin: auto;
+  /* margin: auto; */
   padding-top: 5px;
-  height: 1vh;
+  max-height: 80px;
 }
 
 

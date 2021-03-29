@@ -30,6 +30,8 @@ const lineupReducer = (state=initialLineupState, action) => {
             return {...state, lineupForm: { ...state.lineupForm, [action.payload.name]: action.payload.value}}
         case 'TOGGLE_NEW_LINEUP':
             return {...state, toggleLineup: true}
+        case 'UPDATE_LINEUP_DELETE':
+            return {...state, usersLineups: state.usersLineups.filter(lineup => lineup.id !== action.payload)}
         case 'TOGGLE_LINEUP_OFF':
             return {...state, toggleLineup: false}
         case 'NEW_LINEUP':
