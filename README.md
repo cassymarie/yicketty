@@ -1,8 +1,8 @@
 # Yicketty ~ A baseball game
 
-This is the front end of the web application Yicketty, an eventual type of baseball game.  You can select from your favorite team and set your line up from the roster.  You will be matched with a random team to begin the game. Currently you can view each MLB team and their current roster and each individuals stats.  You can set the lineup that you will eventually play the game with (Hoping by review time!)
+This is the front end of the web application Yicketty, an eventual type of baseball game.  Currently you can view each MLB team and their current roster and each individuals stats.  You can select from your favorite team and set your line up from the roster that you will eventually play the game with.  
 
-Upon game play, each player will have an at Bat until you have reached 3-outs.  Roll the dice to have your player 'hit'.  Results will be logged.  
+*Dreaming Big* The eventual game play, each player will have an at Bat until you have reached 3-outs.  Roll the dice to have your player 'hit' and run the bases. Results will be logged.  Indivdiual player stats will be recorded and can view by each rosters stats.
 
 Yicketty uses [Yak](https://github.com/cassymarie/yak) repository for the backend, as well as following GitHub a main [Yicketty-Kay](https://github.com/users/cassymarie/projects/1) project board with linked repositories to individual boards with issues are located at [Yicketty](https://github.com/cassymarie/yicketty/projects) and [Yak](https://github.com/cassymarie/yak/projects).
 
@@ -22,14 +22,31 @@ This project serves as the final project from the online Software Engineering co
 - [x] Your client-side application should handle the display of data with minimal data manipulation
 - [x] Your application should have some minimal styling.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
-
-### `yarn start`
+1. Clone the ***Yicketty*** repository in your terminal:  `git@github.com:*{your-username}*/yicketty.git`
+2. Move to the project directory: `cd yicketty`
+3. Make sure that you are connected to the backend, follow directions [here @Yak](https://github.com/cassymarie/yak) to connect.
+4. from the project directory, install the required packages: `npm install`
+5. Once installation complete, start the project `npm start`
+   . You maybe directed to open on a different server number, type `Y` and continue.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Dependencies
+
+the following node modules will be installed with this project:
+
+- react: ^17.0.1,
+- react-bootstrap: ^1.5.2,
+- react-bootstrap-icons: ^1.4.0,
+- react-dom: ^17.0.1,
+- react-redux: ^7.2.2,
+- react-router-dom: ^5.2.0,
+- react-scripts: 4.0.3,
+- readline: ^1.3.0,
+- redux: ^4.0.5,
+- redux-thunk: ^2.3.0,
+- web-vitals: ^1.0.1,
+- webpack: ^4.44.2
