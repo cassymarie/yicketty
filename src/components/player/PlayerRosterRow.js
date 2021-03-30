@@ -76,7 +76,7 @@ class PlayerRosterRow extends Component {
           <Button variant="light" onClick={this.addToLineUp}><ArrowRight short/></Button>
         </ListGroup.Item>
         <Accordion.Collapse  eventKey={this.props.id}>
-          {this.props.showCard ? <><PlayerCard eventKey={this.props.id} key={this.props.id}/></> : <div classname="card-placeholder"></div>}
+          {this.props.showCard ? <><PlayerCard eventKey={this.props.id} key={this.props.id}/></> : <div className="card-placeholder"></div>}
         </Accordion.Collapse>
       </Card>
     )

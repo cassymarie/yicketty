@@ -21,7 +21,7 @@ class NewLineupSection extends Component {
 
         return(
             <Container fluid className="team-page">
-              { this.props.newToggle ? <Col xs={6}><LineupTeamForm/></Col> : <></> }
+              <Col xs={6}><LineupTeamForm/></Col> 
               { this.props.team.id ? <Row> <Col><TeamRoster/></Col><Col><LineupForm/></Col> </Row> : <></> }
             </Container>
         )        

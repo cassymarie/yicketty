@@ -2,9 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { submitLineupForm } from '../../actions/LineupActionCreators.js'
 import Form from 'react-bootstrap/Form'
-// import Row from 'react-bootstrap/Row'
-// import Button from 'react-bootstrap/Button'
-// import { Check } from 'react-bootstrap-icons'
 import { setSelectedTeam, setTeamRoster } from '../../actions/MlbActionCreators.js'
 
 const LineupTeamForm = (props) => {

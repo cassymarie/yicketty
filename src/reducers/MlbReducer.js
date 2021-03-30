@@ -1,5 +1,3 @@
-import { Redirect } from "react-router"
-
 const nullTeam =  {
     id: null,
     city: '',

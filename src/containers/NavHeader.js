@@ -27,7 +27,7 @@ class NavHeader extends Component {
     render(){
         return (
         <Navbar bg="dark" variant="dark" sticky="top" bsPrefix="nav-header navbar">
-            <Navbar.Brand bsPrefix="header-brand" href="home">Yicketty</Navbar.Brand>
+            <Navbar.Brand bsPrefix="header-brand" href="/">Yicketty</Navbar.Brand>
             <Nav className="nav-links">
                 <Nav.Link href="/mlbTeams">Teams</Nav.Link>
                 { this.props.user.id === null ? 
