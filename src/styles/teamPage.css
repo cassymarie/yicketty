@@ -1,7 +1,7 @@
 /* large screen */
 .team-page{
-    /* background-color: pink; */
-    height: 90vh;
+    background-color: rgb(247, 243, 243);
+    height: 100vh;
   }
 
 .player-roster{
@@ -12,15 +12,14 @@
     border-radius: 10px;
   }
 
-  .team-roster-list {
+  /* .team-roster-list {
     overflow-y: scroll;
     border: 1px solid lightgray;
     border-top: none;
     border-left: none;
     padding-top: 10px;
     padding-bottom: 10px;
-    /* height: 70vh; */
-  }
+  } */
 
   .roster-number {
     text-align: center;
@@ -58,7 +57,7 @@
       }
 
     .player-roster{
-      width: 98%;
+      width: 80%;
       margin: 4px;
       height: 36px;
       padding: 6px;
@@ -87,8 +86,8 @@
     }
 
     .player-roster{
-        width: 100%;
-        margin: 2px;
+        width: 80%;
+        margin-bottom: 2px;
         height: 30px;
         padding: 3px;
         font-size: 14px;

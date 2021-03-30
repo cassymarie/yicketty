@@ -6,10 +6,9 @@ import { removeUsersLineup } from '../../actions/LineupActionCreators.js'
 
 
 const UserLineup = (props) => {
-
   const listRoster = () => {
     return (props.roster.map(player => 
-      <Button variant="outline-primary">{player.position}{'-'}{player.nameLast}</Button>
+      <Button variant="outline-primary" key={`${props.id}-${player.playerId}`}>{player.position}{'-'}{player.nameLast}</Button>
     ))
   }
 

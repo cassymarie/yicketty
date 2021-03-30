@@ -10,7 +10,7 @@ const TeamHeader = (props) => {
       <Container style={{backgroundColor:`${color1}`}} fluid>
           <Row className="team-header">
           <Col bsPrefix="col team-info">
-              <a href={website}><h1 class="team-title">{name_full}</h1></a>
+              <a href={website}><h1 className="team-title">{name_full}</h1></a>
               <p className="team-location">{venue} | {city},{state}</p>
           </Col>
           <Col xs={2} >

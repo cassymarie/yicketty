@@ -14,6 +14,7 @@ const initialLineupState =  {
     lineupForm: initialLineupForm,
     lineupFormOrder: [],
     usersLineups: [],
+    availableRoster: [],
     toggleLineup: false,
     newLineup: ''
 }
@@ -34,6 +35,10 @@ const lineupReducer = (state=initialLineupState, action) => {
             return {...state, usersLineups: state.usersLineups.filter(lineup => lineup.id !== action.payload)}
         case 'TOGGLE_LINEUP_OFF':
             return {...state, toggleLineup: false}
+        case 'SET_AVAILABLE_ROSTER':
+            return {...state, availableRoster: action.payload}
+        case 'AVAILABLE_ROSTER':
+            return {...state, availableRoster: action.payload}
         case 'NEW_LINEUP':
             return {...state, newLineup: action.payload}
         default: 

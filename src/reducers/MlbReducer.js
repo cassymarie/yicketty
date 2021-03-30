@@ -31,11 +31,12 @@ const mlbReducer = (state=initialMlbState, action) => {
             case 'SET_MLB_TEAMS':
                 return {...state, teams: action.payload}
             case 'SET_TEAM_ROSTER':
-                return {...state, teamRoster: action.payload}
+                const hittersOnly = action.payload.filter(player => player.position !== "P")
+                return {...state, teamRoster: action.payload, filteredRoster: hittersOnly}
             case 'SET_SELECTED_TEAM':
                 return {...state, selectedTeam: action.payload}
             case 'SET_CURRENT_PLAYER':
-                return {...state, currentPlayer: action.payload, cardToggle: true}
+                return {...state, currentPlayer: action.payload, cardToggle: true }
             case 'UNSELECT_PLAYER':
                     return {...state, currentPlayer: null, cardToggle: false, playerStats: [], playerImages: baseImages}
             case 'UNSELECT_TEAM':

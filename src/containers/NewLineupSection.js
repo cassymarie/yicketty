@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer } from '../actions/MlbActionCreators.js'
-
+import { unSelectTeam } from '../actions/MlbActionCreators.js'
+import { resetLineup } from '../actions/LineupActionCreators.js'
 import LineupTeamForm from '../components/lineup/LineupTeamForm.js'
 import LineupForm from '../components/lineup/LineupForm.js'
 import TeamRoster from './TeamRoster.js'
@@ -10,8 +10,11 @@ import '../styles/teamPage.css'
 
 import { Container, Row, Col } from 'react-bootstrap'
 
-
 class NewLineupSection extends Component {
+
+    componentDidMount(){
+        this.props.resetLineup()
+    }
 
     componentWillUnmount(){
         this.props.unSelectTeam()
@@ -21,8 +24,8 @@ class NewLineupSection extends Component {
 
         return(
             <Container fluid className="team-page">
-              <Col xs={6}><LineupTeamForm/></Col> 
-              { this.props.team.id ? <Row> <Col><TeamRoster/></Col><Col><LineupForm/></Col> </Row> : <></> }
+              <Col xs={4}><LineupTeamForm/></Col> 
+              { this.props.roster.length > 0 ? <Row> <Col><TeamRoster/></Col><Col><LineupForm/></Col> </Row> : <></> }
             </Container>
         )        
     }
@@ -36,4 +39,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer })(NewLineupSection)
+export default connect(mapStateToProps, { unSelectTeam, resetLineup })(NewLineupSection)

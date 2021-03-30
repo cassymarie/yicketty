@@ -6,17 +6,17 @@ class ScoreBoard extends Component {
 
     render(){
         return(
-            <div class="scoreboard">
+            <div className="scoreboard">
                 <div id="title">FENWAY PARK</div>
                 <div id="innings">123456789</div>
                 
-                <div class="sd">SAN DIEGO
+                <div className="sd">SAN DIEGO
                     <div id="score-sd">000000000</div>
                 </div>
-                <div class="sd">BOSTON
+                <div className="sd">BOSTON
                     <div id="score-sd">000000000</div>
                 </div>
-                <div class="count">
+                <div className="count">
                     <div id="BALL">BALL</div>
                     <div id="STRIKE">STRIKE</div>
                     <div id="OUT">OUT</div>

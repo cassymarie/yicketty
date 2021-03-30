@@ -172,8 +172,6 @@ code {
   margin-bottom: 10px;
 }
 
-
-
 .team-location {
   color: white;
   font-weight: bold;
@@ -186,41 +184,19 @@ code {
 
 .team-logo {
   float: right;
-  /* margin: auto; */
   padding-top: 5px;
   max-height: 80px;
 }
 
 
 /* Roster */
-.player-tabs {
-  font-size: 20px;
-  margin-top: 5px;
-}
-
 .team-roster {
   background-color: white;
-  border: 1px solid black;
   margin: 0%;
   margin-right: 20px;
   width: 25%;
 }
 
-
-/* 
-.player-roster{
-  display: inline-flex;
-  text-align: center;
-  border: 1px solid lightgray;
-  background-color: white;
-  border-radius: 10px;
-  width: 75%;
-  margin: 4px;
-  height: 36px;
-  padding: 6px;
-  font-size: 18px;
-  line-height: 24px;
-} */
 
 .available{
   color: black;
@@ -232,22 +208,19 @@ code {
   font-style: italic;
 }
 
-/* .roster-player {
-  display: inline-flex;
-  padding: 0px;
-  margin: 0px;
-} */
-
-
-
 /* Player Card */
 
 .player-card {
   border: 1px black solid;
   background-color: white;
-  /* margin: 20px; */
-  width: 100%;
+  width: 95%;
   height: fit-content;
+  box-shadow: .5em .5em .5em rgba(80, 80, 80,0.80);
+}
+
+.add-margin-card {
+  margin: auto;
+  margin-top: 45px;
 }
 
 .player-card-header {
@@ -256,17 +229,21 @@ code {
   width: 100%;
   background-size: cover;
   background-position: center;
+  border-bottom: 3px solid darkred;
   min-height: 150px;
 }
 
 .player-card-title *{
+  font-family: 'Crete Round', serif;
   color: white;
+  text-shadow: 1px 1px 3px rgba(121, 9, 15, 0.8);
+  background-color: rgba(56, 33, 121, 0.4);
   display: inline-flex;
-  height: 30px;
+  height: fit-content;
   padding: 2px;
   margin: 0px;
-  margin-top: 120px;
-  font-size: 18px;
+  margin-top: 107px;
+  font-size: 26px;
 }
 
 
@@ -287,37 +264,6 @@ code {
 .actionPhoto{
   width: 100%;
 }
-
-/* Lineup
-.lineup{
-  border: 1px black solid;
-  background-color: white;
-  display: block;
-  width: 25%;
-  padding: 5px;
-}
-
-.lineup-group{
-  display: inline-flex;
-  width: 100%;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  margin-bottom: 4px;
-  padding: 4px;
-  height: 30px;
-}
-
-.lineup-position{
-  width: 40px;
-  margin-left: 5px;
-}
-
-.lineup-name {
-  width: 100%;
-  padding: 0px;
-  border: none;
-  border-radius: 10px;
-} */
 
 .container-fluid {
   padding: 0px

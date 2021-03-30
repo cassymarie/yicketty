@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerCardStatsRow from './PlayerCardStatsRow.js'
 import { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF } from '../../actions/MlbActionCreators.js'
-import Spinner from 'react-bootstrap/Spinner'
 import Table from 'react-bootstrap/Table'
 
 class PlayerCard extends Component {
@@ -16,20 +15,13 @@ class PlayerCard extends Component {
     this.props.resetPlayer()
   }
 
-  loading = () => {
-    return(
-      <Spinner animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
-    )
-  }
 
   statsInfo = () => {
     const statsBySeason = this.props.stats
 
     return(
       <tbody>
-        {statsBySeason.length === 'undefined' ? this.loading() : statsBySeason.map(stat => <PlayerCardStatsRow {...stat}/>) }
+        {statsBySeason.length === 'undefined' ? <></> : statsBySeason.map(stat => <PlayerCardStatsRow {...stat}/>) }
       </tbody>
     )
   }
@@ -81,7 +73,9 @@ class PlayerCard extends Component {
         <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
         <>
         <div className="player-card-title">
-          <p>#{this.props.player.jersey}</p><p>{this.props.player.nameFull}</p><p>{this.props.player.position}</p>
+          <p className="card-number">#{this.props.player.jersey}</p>
+          <p className="card-name">{this.props.player.nameFull}</p>
+          <p className="card-position">{this.props.player.position}</p>
         </div>
         </>
       </span>
@@ -92,7 +86,7 @@ class PlayerCard extends Component {
   render(){
  
     return(
-      <div className="player-card">
+      <div className={this.props.page === 'team' ? 'player-card add-margin-card' : 'player-card'}>
         {this.cardHeader()}
         <Table responsive="md" borderless hover size="sm" striped>
           {this.props.pitcherView ? this.statsPitchingHeader() : this.statsHittingHeader()}
@@ -108,7 +102,8 @@ const mapStateToProps = (state) => ({
   player: state.mlb.currentPlayer,
   images: state.mlb.playerImages,
   stats: state.mlb.playerStats,
-  pitcherView: state.mlb.pitcherToggle
+  pitcherView: state.mlb.pitcherToggle,
+  page: state.app.currentPage
 })
 
 

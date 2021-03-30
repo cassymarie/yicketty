@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import UserLineup from '../components/lineup/userLineup.js'
-import { toggleNewLineup } from '../actions/LineupActionCreators.js' 
+import UserLineup from './userLineup.js'
+import { toggleNewLineup } from '../../actions/LineupActionCreators.js' 
 import Table from 'react-bootstrap/Table'
 
 

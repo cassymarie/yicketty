@@ -15,11 +15,11 @@ const LineupTeamForm = (props) => {
 
     return(
         <Form className="lineup-team-form">
-            <Form.Group>
+            <Form.Group >
                 <Form.Label bsPrefix="lineup-team">Select a Team</Form.Label>
                 <Form.Control as="select" name="lineup[mlb_team_id]" onChange={ onSubmit }>
                     <option value=''></option>
-                    {props.teams.map(team => <option value={team.id}>{team.fullName}</option>)}
+                    {props.teams.map(team => <option key={team.id} value={team.id}>{team.fullName}</option>)}
                 </Form.Control>
             </Form.Group>
         </Form>

@@ -2,19 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 // import PlayerCard from '../player/PlayerCard.js'
 import { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF } from '../../actions/MlbActionCreators.js'
-import { handleLineupChange } from '../../actions/LineupActionCreators.js'
+import { handleLineupChange, availableRoster } from '../../actions/LineupActionCreators.js'
 import { ArrowRight, CardList } from 'react-bootstrap-icons'
 import { Card, Accordion, Button, ListGroup } from 'react-bootstrap'
 import PlayerCard from '../player/PlayerCard.js'
 
 
 class PlayerRosterRow extends Component {
+  componentDidMount(){
+    this.props.availableRoster(this.props.form, this.props.roster)
+  }
 
   handleClick = (e) => {
-
     e.stopPropagation()
     const playerId = (e.target.tagName === 'P' || e.target.tagName === 'svg') ? e.target.parentNode.id : e.target.tagName === 'path' ? e.target.parentElement.parentElement.id : e.target.id
-
     this.props.showCard ? this.props.resetPlayer() : this.props.setCurrentPlayer(playerId)
 
   }
@@ -28,6 +29,7 @@ class PlayerRosterRow extends Component {
       </ListGroup.Item>
     )
   }
+
 
   statePosition = (position) => {
     return(!isNaN(position.slice(0,1)) ? `_${position}` : position)
@@ -49,17 +51,13 @@ class PlayerRosterRow extends Component {
       existing = this.props.form[position]
     }
 
-    row.className = "player-roster unavailable"
-
     if (existing !== null) {
       if (this.props.form.DH === null) {
         position = 'DH'
-      } else {
-        document.getElementById(existing.id).className = "player-roster available"
-      }
+      } 
     }
-
     this.props.handleLineupChange(position, {id: this.props.id, nameFull: this.props.nameFull, position })
+    this.props.availableRoster(this.props.form, this.props.roster)
   }
 
   lineupRosterRow = () => {
@@ -82,14 +80,11 @@ class PlayerRosterRow extends Component {
     )
   }
 
-
-  
-
-    render(){
-      return (
-         this.props.page === 'team' ? this.teamRosterRow() : this.lineupRosterRow()
-      )
-    }
+  render(){
+    return (
+        this.props.page === 'team' ? this.teamRosterRow() : this.lineupRosterRow()
+    )
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -97,13 +92,14 @@ const mapStateToProps = (state) => ({
   togglePitcher: state.mlb.togglePitcher,
   page: state.app.currentPage,
   toggleLineup: state.lineup.toggleLineup,
+  roster: state.mlb.teamRoster,
   form: state.lineup.lineupForm,
   player: state.mlb.currentPlayer,
   outfield: [state.lineup.lineupForm.OF1,state.lineup.lineupForm.OF2,state.lineup.lineupForm.OF3],
   showCard: state.mlb.cardToggle
 })
 
-export default connect(mapStateToProps, { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF, handleLineupChange })(PlayerRosterRow)
+export default connect(mapStateToProps, { getPlayerPhotos, setCurrentPlayer, resetPlayer, getPlayerCareerStats, toggleCardON, toggleCardOFF, handleLineupChange, availableRoster })(PlayerRosterRow)
 
 
 

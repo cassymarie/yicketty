@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import MyLineups from './MyLineups.js'
+import MyLineups from '../components/mvp/MyLineups.js'
 import NewLineupSection from './NewLineupSection.js'
 import { getUserLineups, toggleExistingLineups, toggleNewLineup } from '../actions/LineupActionCreators.js'
 import { currentPage } from '../actions/AppActionCreators.js'

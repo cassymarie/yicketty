@@ -1,5 +1,6 @@
 const API = "http://localhost:3000"
 
+
 export const handleLineupChange = (position, player) => ({type: 'LINEUP_CHANGE', payload: {name: position, value: player}})
 
 // export const submitLineupForm = (form) => ({type: 'SET_LINEUP', payload: form})
@@ -30,6 +31,7 @@ export const getUserLineups = () => {
       }
 }
 
+export const resetLineup =() => ({type: 'CLEAR_LINEUP'})
 export const toggleNewLineup = () => ({type: 'TOGGLE_NEW_LINEUP'})
 export const toggleExistingLineups = () => ({type: 'TOGGLE_LINEUP_OFF'})
 
@@ -60,6 +62,7 @@ export const newLineup = (lineupData, lineupRoster) => {
                     lineup.roster.push(player)
                 })
             })
+            
             return lineup
         })
         .then(lineup =>  dispatch({ type: 'NEW_LINEUP', payload: lineup }))
@@ -120,3 +123,11 @@ export const removeUsersLineup = (id) => {
         )
     }
 }
+
+export const setAvailableRoster = (roster) => ({type: 'SET_AVAILABLE_ROSTER', payload: roster})
+
+export const availableRoster = (lineup, roster) => {
+    const arr = Object.values(lineup).filter(x => x !== null).map(x=>x.id)
+    const available = roster.filter(player => !arr.includes(player.id) && player.position !== "P")
+    return({type: 'AVAILABLE_ROSTER', payload: available})
+  }

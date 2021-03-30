@@ -1,69 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Row, Button, Accordion, Container, ButtonGroup, ListGroup } from 'react-bootstrap'
-import { setTeamRoster, filteredRoster } from '../actions/MlbActionCreators.js'
+import { Row, Accordion, Container, ListGroup } from 'react-bootstrap'
+import { setTeamRoster, filterRoster } from '../actions/MlbActionCreators.js'
+import { setAvailableRoster } from '../actions/LineupActionCreators.js'
 import PlayerRosterRow from '../components/player/PlayerRosterRow'
+import PositionButtons from '../components/player/PositionButtons.js'
 
 
 class TeamRoster extends Component {
 
   componentDidMount(){
+    const availableLineupPlayers = this.props.roster.filter(p => p.position !== "P")
+    this.props.available.length < 1 ? this.props.setAvailableRoster(availableLineupPlayers) : this.props.filterRoster((this.props.page === 'team' ? this.props.roster : this.props.available))
   }
 
   renderList = () => {
-    const list = this.props.toggle ? this.props.roster.filter(player => player.position === "P") :
-    this.props.roster.filter(player => player.position !== "P")
-
     return (
       <>
-      <ListGroup className={this.props.lineupToggle ? "lineup-roster-list" : "team-roster-list"}>
-        {list.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
-      </ListGroup>
-      </>
-    )
-  }
-
-  filteredList = (pos="ALL") => {
-    const outfield = ['CF','RF','LF']
-      if (pos === "ALL"){
-        
-        return (this.props.roster.filter(player => player.position !== "P"))
-      } else if (pos === "OF"){
-        return (this.props.roster.filter(player => outfield.includes(player.position)))
-      } else {
-        return (this.props.roster.filter(player => player.position === pos))
-      }
-  }
-  
-  handlePositionChange = (event) => {
-    const pos = event.target.value
-    const list = this.filteredList(pos)
-    this.props.filteredRoster(list)
- }
-
-  lineupPositionButtons = () => {
-    return(
-      <ButtonGroup onClick={this.handlePositionChange} >
-        <Button variant="outline-secondary" value="ALL">ALL</Button>
-        <Button variant="outline-secondary" value="1B">1B</Button>
-        <Button variant="outline-secondary" value="2B">2B</Button>
-        <Button variant="outline-secondary" value="3B">3B</Button>
-        <Button variant="outline-secondary" value="SS">SS</Button>
-        <Button variant="outline-secondary" value="OF">OF</Button>
-        <Button variant="outline-secondary" value="C">C</Button>
-        <Button variant="outline-secondary" value="P">P</Button>
-      </ButtonGroup>
-    )
-  }
-
-  renderLineupList = () => {
-    
-    return (
-      <>
-      {this.lineupPositionButtons()}
       <ListGroup className="lineup-roster-list">
         <Accordion>
-          {this.props.filteredList.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
+          {this.props.filteredRoster.map(player => <PlayerRosterRow key={player.id} {...player}/>)}
         </Accordion>
       </ListGroup>
       </>
@@ -74,9 +30,10 @@ class TeamRoster extends Component {
     return(
       <Container fluid>
         <Row>
-          {/* {this.props.showCard ? <><PlayerCard key={this.props.id} {...this.props}/></> : <div classname="card-placeholder"></div> } */}
-          {this.renderLineupList()}
-          {/* {this.renderList()} */}
+          <PositionButtons />
+        </Row>
+        <Row>
+          {this.props.roster.length > 0 ? this.renderList() : <></>}
         </Row>
       </Container>
     )
@@ -90,8 +47,10 @@ const mapStateToProps = (state) => ({
     player: state.mlb.selectedPlayer,
     toggle: state.mlb.pitcherToggle,
     lineupToggle: state.lineup.toggleLineup,
-    filteredList: state.mlb.filteredRoster,
-    showCard: state.mlb.cardToggle
+    available: state.lineup.availableRoster,
+    filteredRoster: state.mlb.filteredRoster,
+    showCard: state.mlb.cardToggle,
+    page: state.app.currentPage
   })
 
-export default connect(mapStateToProps, { setTeamRoster, filteredRoster })(TeamRoster);
+export default connect(mapStateToProps, { setTeamRoster, filterRoster, setAvailableRoster })(TeamRoster);
