@@ -1,29 +1,32 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PlayerCardStatsRow from './PlayerCardStatsRow.js'
-import { resetPlayer, clearStats, clearImages } from '../../redux/MlbActionCreators.js'
+import { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF } from '../../actions/MlbActionCreators.js'
+import Table from 'react-bootstrap/Table'
 
 class PlayerCard extends Component {
-  
+
   componentDidMount(){
-    
+    this.props.getPlayerPhotos(this.props.player.id)
+    this.props.getPlayerCareerStats(this.props.player.id)
   }
 
   componentWillUnmount(){
-    this.props.clearStats()
-    this.props.clearImages()
     this.props.resetPlayer()
   }
 
+
   statsInfo = () => {
+    const statsBySeason = this.props.stats
+
     return(
       <tbody>
-        {this.props.stats.map(stat => <PlayerCardStatsRow {...stat}/>)}
+        {statsBySeason.length === 'undefined' ? <></> : statsBySeason.map(stat => <PlayerCardStatsRow {...stat}/>) }
       </tbody>
     )
   }
 
-  statsHeader = () => {
+  statsHittingHeader = () => {
     return(
       <thead >
         <tr >
@@ -42,24 +45,53 @@ class PlayerCard extends Component {
     )
   }
 
-  render(){
+  statsPitchingHeader = () => {
     return(
-      <div className="player-card">
+      <thead >
+        <tr >
+          <th className="stats-name"></th>
+          <th className="">W</th>
+          <th className="">L</th>
+          <th className="">ERA</th>
+          <th className="">G</th>
+          <th className="">GS</th>
+          <th className="">SV</th>
+          <th className="">IP</th>
+          <th className="">SO</th>
+          <th className="">WHIP</th>
+        </tr>
+      </thead>
+    )
+  }
+
+  cardHeader = () => {
+    const background = this.props.images.length === 0 ? 'https://via.placeholder.com/150' : this.props.images.image
+
+    return (
+      <>
+      <span className="player-card-header" style={{ backgroundImage: `url(${background})`}}>
+        <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
         <>
-        <span className="player-card-header" style={{ backgroundImage: `url(${this.props.images.image})`}}>
-          <img style={{width:"100px", height:"150px", left:"0px"}}src={this.props.images.headshot} alt={this.props.player.nameFull}/>
-          <>
-          <div className="player-card-title">
-            <p>#{this.props.player.jersey}</p><p>{this.props.player.nameFull}</p><p>{this.props.player.position}</p>
-          </div>
-          </>
-        </span>
+        <div className="player-card-title">
+          <p className="card-number">#{this.props.player.jersey}</p>
+          <p className="card-name">{this.props.player.nameFull}</p>
+          <p className="card-position">{this.props.player.position}</p>
+        </div>
         </>
-        
-        <table className="table table-striped stats-table">
-          {this.statsHeader()}
+      </span>
+      </>
+    )
+  }
+
+  render(){
+ 
+    return(
+      <div className={this.props.page === 'team' ? 'player-card add-margin-card' : 'player-card'}>
+        {this.cardHeader()}
+        <Table responsive="md" borderless hover size="sm" striped>
+          {this.props.pitcherView ? this.statsPitchingHeader() : this.statsHittingHeader()}
           {this.statsInfo()}
-        </table>
+        </Table>
       </div>
     )
   }
@@ -69,8 +101,10 @@ class PlayerCard extends Component {
 const mapStateToProps = (state) => ({
   player: state.mlb.currentPlayer,
   images: state.mlb.playerImages,
-  stats: state.mlb.playerStats
+  stats: state.mlb.playerStats,
+  pitcherView: state.mlb.pitcherToggle,
+  page: state.app.currentPage
 })
 
 
-export default connect(mapStateToProps, { resetPlayer, clearStats, clearImages })(PlayerCard)
+export default connect(mapStateToProps, { resetPlayer, clearStats, clearImages, getPlayerPhotos, getPlayerCareerStats, toggleCardOFF })(PlayerCard)

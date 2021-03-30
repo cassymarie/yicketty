@@ -1,0 +1,119 @@
+.main-title{
+  color: black;
+  width: 95%;
+  text-align: left;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.lineup-team-form {
+  text-align: left;
+}
+
+.lineup-team {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.lineup-roster-list {
+    /* border: 1px solid black; */
+    padding: 5px;
+    width: 100%;
+}
+
+.set-lineup-team {
+  height: 24px;
+  margin-top: 20px;
+}
+
+.lineup-roster-row {
+  background-color: #f8f9fa;
+  padding: 4px;
+  border-radius: 5px;
+  border: 1px lightgray solid;
+  align-items: center;
+  display: inline-flex;
+  height: 32px;
+}
+
+.lineup-hdr-btn {
+  color: darkgray;
+  padding: 0px;
+  border: none;
+  background-color: none;
+}
+
+.lineup-roster-card {
+  width: fit-content;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  margin-right: 8px;
+}
+
+.lineup-btn-card {
+  color: darkgray;
+  padding: 0px;
+}
+
+.lineup-roster-name {
+  text-align: left;
+  padding-left: 10px;
+  margin: 0px;
+  width: 90%;
+  font-size: 14px;
+}
+
+
+.lineup-roster-position {
+  text-align: left;
+  margin: auto;
+  width: 10%;
+  font-size: 12px;
+  color: darkgray;
+} 
+
+/* Lineup Form*/
+.lineup{
+    border: 1px rgb(219, 218, 218) solid;
+    text-align: left;
+    background-color: white;
+    display: block;
+    padding: 10px;
+    
+  }
+  
+  .lineup-group{
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    background-color: #f8f9fa;
+    /* padding: 4px; */
+    height: fit-content;
+  }
+  
+  .lineup-position{
+    width: 40px;
+    margin-left: 5px;
+    font-size: 16px;
+    color: black;
+  }
+  
+  .lineup-name {
+    width: 100%;
+    margin: 5px;
+    padding: 2px;
+    border: none;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+ 
+
+  .form-row {
+    width: 100%;
+  }

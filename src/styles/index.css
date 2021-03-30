@@ -1,0 +1,277 @@
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  border: none;
+  height: 100vh;
+}
+
+
+#root {
+  padding: 0px;
+}
+
+.plateImage {
+  background-image: url("https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=")
+}
+
+.home-page {
+  background-image: url("https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=");
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+}
+
+.mlb-team-page {
+  background-image: url("https://wallpapercave.com/wp/OELdkBa.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+
+.home-page-title {
+  font-family: 'Crete Round', serif;
+  font-size: 60px;
+  padding-top: 120px;
+  color: darkslateblue;
+  text-shadow: 5px 5px 10px rgba(139, 0, 0,.80);
+  width: 100%;
+}
+
+.home-page-description {
+  margin: auto;
+  font-size: 20px;
+  padding-top: 15px;
+  width: 40%;
+}
+.wider {
+  padding-top: 10px;
+  width: 55%;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.app {
+  /* padding: 15px; */
+  height: 100%;
+  max-height: max-content;
+  background-size: cover;
+}
+
+.login-page {
+  padding-top: 7%;
+}
+
+
+.login {
+  border: 1px solid rgb(170, 22, 22);
+  padding: 5px 40px 10px 40px;
+  text-align: center;
+  background-color: rgb(170, 22, 22);
+  box-shadow: rgb(68, 67, 67) 5px 10px 15px;
+  margin: auto;
+  width: 25%;
+  
+}
+
+.login-title {
+  color: white;
+  font-size: 30px;
+  font-family: 'Crete Round', serif;
+  text-shadow: 5px 5px 10px rgba(51, 1, 1, 0.8);
+}
+
+.form-label {
+  text-align: left;
+  margin-top: 5px;
+  color: white;
+  font-size: 12px;
+}
+
+.page-header {
+  /* padding: 5px; */
+  text-align: left;
+  margin: 0%;
+  background-color: darkred;
+  color: white;
+}
+
+.page-title {
+ /* color: white; */
+ color: darkblue;
+ text-shadow: 1px 1px 1px black;
+ margin-left: 20px;
+}
+
+
+/*MLB TEAMS / BY LEAGUE */
+
+.league {
+  margin: 20px;
+  text-align: left;
+  max-width: fit-content;
+}
+
+.league-title {
+  color: white;
+  font-size: 30px;
+  font-family: 'Crete Round', serif;
+  text-transform: uppercase;
+  text-shadow: 5px 6px 6px rgba(20, 20, 20, 0.9);
+  text-decoration: underline;
+}
+
+
+.division-title {
+  color: white;
+  font-size: 18px;
+  font-family: 'Crete Round', serif;
+  text-shadow: 1px 2px 2px rgba(20, 20, 20, 0.9);
+}
+
+
+.mlb-team-card {
+  border: 1px solid black;
+  border-radius: 5em;
+  box-shadow: 1em .5em .5em rgba(80, 80, 80,0.80);
+  min-width: 10em;
+  max-width: 15em;
+  text-align: center; 
+  margin: 1em;
+  padding-top: 1em;
+}
+
+.mlb-card-title {
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  padding: .25em;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.mlb-card-logo {
+  width: 5em;
+  height: 5em;
+}
+
+
+/* MLB TEAM PAGE */
+.team-header {
+  height: 10vh;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.team-location {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+.card-placeholder {
+  border: 1px black solid;
+}
+
+
+.team-logo {
+  float: right;
+  padding-top: 5px;
+  max-height: 80px;
+}
+
+
+/* Roster */
+.team-roster {
+  background-color: white;
+  margin: 0%;
+  margin-right: 20px;
+  width: 25%;
+}
+
+
+.available{
+  color: black;
+}
+
+.unavailable{
+  color: lightgray;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+/* Player Card */
+
+.player-card {
+  border: 1px black solid;
+  background-color: white;
+  width: 95%;
+  height: fit-content;
+  box-shadow: .5em .5em .5em rgba(80, 80, 80,0.80);
+}
+
+.add-margin-card {
+  margin: auto;
+  margin-top: 45px;
+}
+
+.player-card-header {
+  display: inline-flex;
+  margin: auto;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid darkred;
+  min-height: 150px;
+}
+
+.player-card-title *{
+  font-family: 'Crete Round', serif;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(121, 9, 15, 0.8);
+  background-color: rgba(56, 33, 121, 0.4);
+  display: inline-flex;
+  height: fit-content;
+  padding: 2px;
+  margin: 0px;
+  margin-top: 107px;
+  font-size: 26px;
+}
+
+
+.team-card-sect{
+  display: inline-flex;
+  margin: 0px;
+  float: left;
+  width: 100%;
+  left: 10px;
+
+}
+
+.stats-name{
+  width: fit-content;
+  padding-right: 5px;
+}
+
+.actionPhoto{
+  width: 100%;
+}
+
+.container-fluid {
+  padding: 0px
+}
+
+.more-info{
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+}

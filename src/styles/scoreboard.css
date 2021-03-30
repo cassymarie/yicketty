@@ -1,0 +1,85 @@
+html {
+    display: flex;
+    justify-content: center;
+    background-color: #D3B083;
+  }
+  
+  .scoreboard {
+    background-color: #486030;
+    display: flex;
+    color: #EEEEEE;
+    font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1rem;
+    /* margin-top: 1rem; */
+    min-width:25rem;
+    border-radius: .5rem;
+  }
+  
+  #title {
+    font-size: 2rem;
+    letter-spacing: 1rem;
+  }
+  
+  #innings {
+    letter-spacing: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .sd {
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+  }
+  
+  #score-sd {
+    font-size: 1.5rem;
+    letter-spacing: 1rem;
+    padding-left: 1rem;
+  }
+  
+  .count {
+    display:flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    padding-top: .5rem;
+  }
+  
+  #BALL {
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #STRIKE {
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #OUT {
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #BALL:after {
+    content: "●●●";
+    color: #184848;
+  }
+  
+  #STRIKE:after {
+    content: "●●";
+    color: red;
+  }
+  
+  #OUT:after {
+    content: "●●";
+    color: #184848;
+  }
+  
+  

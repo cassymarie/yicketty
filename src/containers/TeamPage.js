@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF } from '../redux/MlbActionCreators.js'
-import Roster from '../containers/Roster.js'
+import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer } from '../actions/MlbActionCreators.js'
+import { currentPage } from '../actions/AppActionCreators.js'
 import PlayerCard from '../components/player/PlayerCard.js'
-import Lineup from '../components/lineup/Lineup.js'
+import TeamRoster from './TeamRoster.js'
+import TeamHeader from '../components/mlb/TeamHeader.js'
+import { Container, Col, Row } from 'react-bootstrap'
+
+import '../styles/teamPage.css'
+
 
 class TeamPage extends Component {
 
     componentDidMount(){
-        const id = this.props.match.params.id
+        this.props.currentPage('team')
+        const id = parseInt(this.props.match.params.id)
         this.props.setSelectedTeam(id)
         this.props.setTeamRoster(id)
     }
@@ -17,41 +22,37 @@ class TeamPage extends Component {
     componentWillUnmount(){
         this.props.unSelectTeam()
         this.props.toggleCardOFF()
+        this.props.currentPage('')
     }
 
-    renderTeamInfo =() => {
-        return(
-            <>
-            <div className="col-xs-2">
-                <img style={{width:"100px", height:"100px"}}src={this.props.team.logo} alt={this.props.team.name_full}/>
-                </div>
-            <div className="col-xs-8" style={{color: 'white'}}>
-                <h1><a href={this.props.team.website}>{this.props.team.name_full}</a></h1>
-            </div>
-            <div className="col-xs-2" style={{color: 'white'}}>
-                <h4>{this.props.team.venue}</h4>
-                <p>{this.props.team.city},{this.props.team.state}</p>
-            </div>
-            </>
-        )
-    }
+
+  handleSelect(eventKey) {
+    this.props.resetPlayer()
+    switch (eventKey){
+      case 'hitter':
+        return this.props.togglePitcherReset()
+      case 'pitcher':
+        return this.props.togglePitcher()
+      case 'search':
+      default:
+    } 
+  }
+
 
     render(){
 
         return(
-            <>
-            <div>
-                {this.renderTeamInfo()}
-                <Link to={`/mlbteams`}><button onClick={this.props.goBack}>Back to Teams</button></Link>
-            </div>
-            <div className="team-card-sect">
-                
-                <Roster />
-                <Lineup />
-                { this.props.showCard ? <PlayerCard/> : <></>}
-                
-            </div>
-            </>
+            <Container fluid className="team-page">
+                <TeamHeader team={this.props.team}/>
+                <Row>
+                  <Col>
+                    <TeamRoster />
+                  </Col>
+                  <Col>
+                    {(this.props.showCard && this.props.player )? <PlayerCard /> : <></>}
+                  </Col>
+                </Row>
+            </Container>
         )        
     }
 
@@ -59,9 +60,10 @@ class TeamPage extends Component {
 
 const mapStateToProps = (state) => ({
     roster: state.mlb.teamRoster,
+    player: state.mlb.currentPlayer,
     team: state.mlb.selectedTeam,
     showCard: state.mlb.cardToggle
 })
 
 
-export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF })(TeamPage)
+export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer, currentPage })(TeamPage)
