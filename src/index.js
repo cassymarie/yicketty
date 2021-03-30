@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import App from './App';
 import NavHeader from './containers/NavHeader.js'
 import reducer from './reducers/CombinedReducer';
-import './index.css';
+import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const store = createStore(reducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));

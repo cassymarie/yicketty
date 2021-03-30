@@ -16,8 +16,6 @@ class PlayerRosterRow extends Component {
     const playerId = (e.target.tagName === 'P' || e.target.tagName === 'svg') ? e.target.parentNode.id : e.target.tagName === 'path' ? e.target.parentElement.parentElement.id : e.target.id
 
     this.props.showCard ? this.props.resetPlayer() : this.props.setCurrentPlayer(playerId)
-    // this.props.getPlayerCareerStats(playerId)
-    // this.props.toggleCardON()
 
   }
 
@@ -89,7 +87,7 @@ class PlayerRosterRow extends Component {
 
     render(){
       return (
-         this.props.toggleLineup ? this.lineupRosterRow() : this.teamRosterRow()
+         this.props.page === 'team' ? this.teamRosterRow() : this.lineupRosterRow()
       )
     }
 }
@@ -97,6 +95,7 @@ class PlayerRosterRow extends Component {
 const mapStateToProps = (state) => ({
   lineup: state.lineup,
   togglePitcher: state.mlb.togglePitcher,
+  page: state.app.currentPage,
   toggleLineup: state.lineup.toggleLineup,
   form: state.lineup.lineupForm,
   player: state.mlb.currentPlayer,

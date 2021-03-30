@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Nav, Navbar } from 'react-bootstrap'
 import { currentPage } from '../actions/AppActionCreators.js'
 
-import '../nav.css'
+import '../styles/nav.css'
 
 class NavHeader extends Component {
 

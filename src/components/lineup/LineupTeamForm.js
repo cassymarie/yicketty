@@ -17,17 +17,14 @@ const LineupTeamForm = (props) => {
     }
 
     return(
-        <Form  >
-            {/* <Row bsPrefix="row form-row"> */}
-                <Form.Group>
-                    <Form.Label>Select Team</Form.Label>
-                    <Form.Control as="select" name="lineup[mlb_team_id]" onChange={ onSubmit }>
-                        <option value=''></option>
-                        {props.teams.map(team => <option value={team.id}>{team.fullName}</option>)}
-                    </Form.Control>
-                </Form.Group>
-                {/* <Button variant="secondary" type="submit" className="set-lineup-team"><Check/></Button> */}
-            {/* </Row> */}
+        <Form className="lineup-team-form">
+            <Form.Group>
+                <Form.Label bsPrefix="lineup-team">Select a Team</Form.Label>
+                <Form.Control as="select" name="lineup[mlb_team_id]" onChange={ onSubmit }>
+                    <option value=''></option>
+                    {props.teams.map(team => <option value={team.id}>{team.fullName}</option>)}
+                </Form.Control>
+            </Form.Group>
         </Form>
     )
 }

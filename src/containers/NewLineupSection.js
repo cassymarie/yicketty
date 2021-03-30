@@ -6,33 +6,16 @@ import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitc
 import LineupTeamForm from '../components/lineup/LineupTeamForm.js'
 import LineupForm from '../components/lineup/LineupForm.js'
 import TeamRoster from './TeamRoster.js'
-import '../teamPage.css'
+import '../styles/teamPage.css'
 
 import { Container, Row, Col } from 'react-bootstrap'
 
 
 class NewLineupSection extends Component {
 
-    componentDidMount(){
-
-    }
-
     componentWillUnmount(){
         this.props.unSelectTeam()
     }
-
-
-  // handleSelect(eventKey) {
-  //   this.props.resetPlayer()
-  //   switch (eventKey){
-  //     case 'hitter':
-  //       return this.props.togglePitcherReset()
-  //     case 'pitcher':
-  //       return this.props.togglePitcher()
-  //     case 'search':
-  //     default:
-  //   } 
-  // }
 
     render(){
 
@@ -49,8 +32,7 @@ class NewLineupSection extends Component {
 
 const mapStateToProps = (state) => ({
     roster: state.mlb.teamRoster,
-    team: state.mlb.selectedTeam,
-    newToggle: state.lineup.toggleLineup
+    team: state.mlb.selectedTeam
 })
 
 

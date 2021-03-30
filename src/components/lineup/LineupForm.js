@@ -6,8 +6,7 @@ const LineupForm = (props) => {
     const { _1B, _2B, _3B, SS, OF1, OF2, OF3, DH, C } = props.lineup
 
     const onSubmit = (event) => { 
-        event.preventDefault()
-        console.log("You are submitting the Lineup")
+        // event.preventDefault() // Did this on purpose to refresh page to open My Lineups by default
         const order = []
         const inputs = document.forms["lineup-form"].getElementsByTagName("input")
             for (let i = 0; i < inputs.length-1; i++){

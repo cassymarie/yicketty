@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PlayerRosterRow from '../components/player/PlayerRosterRow'
-
-
-import { setTeamRoster, filteredRoster } from '../actions/MlbActionCreators.js'
 import { Row, Button, Accordion, Container, ButtonGroup, ListGroup } from 'react-bootstrap'
+import { setTeamRoster, filteredRoster } from '../actions/MlbActionCreators.js'
+import PlayerRosterRow from '../components/player/PlayerRosterRow'
 
 
 class TeamRoster extends Component {
@@ -28,6 +26,7 @@ class TeamRoster extends Component {
   filteredList = (pos="ALL") => {
     const outfield = ['CF','RF','LF']
       if (pos === "ALL"){
+        
         return (this.props.roster.filter(player => player.position !== "P"))
       } else if (pos === "OF"){
         return (this.props.roster.filter(player => outfield.includes(player.position)))
@@ -52,12 +51,10 @@ class TeamRoster extends Component {
         <Button variant="outline-secondary" value="SS">SS</Button>
         <Button variant="outline-secondary" value="OF">OF</Button>
         <Button variant="outline-secondary" value="C">C</Button>
+        <Button variant="outline-secondary" value="P">P</Button>
       </ButtonGroup>
     )
   }
-
-
-
 
   renderLineupList = () => {
     

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../baseballField.css'
+import '../styles/baseballField.css'
 import Container from 'react-bootstrap/Container'
 import { currentPage } from '../actions/AppActionCreators.js'
 

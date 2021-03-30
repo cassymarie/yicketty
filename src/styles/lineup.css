@@ -6,8 +6,17 @@
   font-size: 20px;
 }
 
+.lineup-team-form {
+  text-align: left;
+}
+
+.lineup-team {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
 .lineup-roster-list {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 5px;
     width: 100%;
 }
@@ -66,7 +75,8 @@
 
 /* Lineup Form*/
 .lineup{
-    border: 1px black solid;
+    /* border: 1px black solid; */
+    text-align: left;
     background-color: white;
     display: block;
     padding: 5px;

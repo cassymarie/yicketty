@@ -1,3 +1,5 @@
+import { Redirect } from "react-router"
+
 const nullTeam =  {
     id: null,
     city: '',
@@ -39,7 +41,7 @@ const mlbReducer = (state=initialMlbState, action) => {
             case 'UNSELECT_PLAYER':
                     return {...state, currentPlayer: null, cardToggle: false, playerStats: [], playerImages: baseImages}
             case 'UNSELECT_TEAM':
-                return {...state, selectedTeam: nullTeam}
+                return {...state, selectedTeam: nullTeam, filteredRoster: [], teamRoster: []}
             case 'TOGGLE_PITCHER':
                 return {...state, pitcherToggle: true }
             case 'TOGGLE_PITCHER_RESET':

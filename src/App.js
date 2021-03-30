@@ -6,10 +6,9 @@ import { autoLogin } from './actions/UserActionCreators.js'
 import MlbTeams from './containers/MlbTeams.js'
 import Home from './components/home.js'
 import Login from './components/login.js'
-import MyPage from './components/mvp/MyPage.js'
+import MyPage from './containers/MyPage.js'
 import TeamPage from './containers/TeamPage.js'
-// import Container from 'react-bootstrap/Container'
-import BaseballField from './containers/BaseballField.js';
+import GamePage from './containers/GamePage.js';
 
 class App extends Component {
 
@@ -30,7 +29,7 @@ class App extends Component {
               <Route exact path="/mlbteams/:id/hitters" component={TeamPage}/>
               <Route exact path="/mlbteams/:id/player-search" component={TeamPage}/>
               <Route exact path="/mlbteams" component={MlbTeams}/>
-              <Route exact path="/yicketty" component={BaseballField}/>
+              <Route exact path="/yicketty" component={GamePage}/>
               <Route exact path="/mvp/lineups" component={MyPage}/>
               <Route exact path="/login">{ this.props.user.id ? <Redirect to="/mvp/lineups"/> : <Login /> }</Route>
               <Route exact path="/" component={Home}/>

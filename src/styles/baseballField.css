@@ -1,5 +1,7 @@
 #stadium{
-    position:absolute;
+    position:fixed;
+    top: 30px;
+    left: 00px;
 }
 
 #field{ 

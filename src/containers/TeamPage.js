@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer } from '../actions/MlbActionCreators.js'
 import { currentPage } from '../actions/AppActionCreators.js'
-
+import PlayerCard from '../components/player/PlayerCard.js'
 import TeamRoster from './TeamRoster.js'
 import TeamHeader from '../components/mlb/TeamHeader.js'
-import { Container, Nav } from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 
-import '../teamPage.css'
+import '../styles/teamPage.css'
 
 
 class TeamPage extends Component {
@@ -38,32 +38,20 @@ class TeamPage extends Component {
     } 
   }
 
-  renderTabs = () => {
-    return (
-      <>
-        <Nav variant="tabs" defaultActiveKey="/mlbteams/:id" onSelect={k => this.handleSelect(k)}>
-          <Nav.Item className="player-tabs">
-            <Nav.Link eventKey="hitter">Hitters</Nav.Link>
-          </Nav.Item>
-          <Nav.Item className="player-tabs">
-            <Nav.Link eventKey="pitcher">Pitchers</Nav.Link>
-          </Nav.Item>
-          <Nav.Item className="player-tabs">
-            <Nav.Link  eventKey="search">Search</Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </>
-    )
-  }
 
     render(){
 
         return(
             <Container fluid className="team-page">
                 <TeamHeader team={this.props.team}/>
-                {this.renderTabs()}
-                <TeamRoster />
-                {/* <Lineup /> */}
+                <Row>
+                  <Col>
+                    <TeamRoster />
+                  </Col>
+                  <Col>
+                    {(this.props.showCard && this.props.player )? <PlayerCard /> : <></>}
+                  </Col>
+                </Row>
             </Container>
         )        
     }
@@ -72,6 +60,7 @@ class TeamPage extends Component {
 
 const mapStateToProps = (state) => ({
     roster: state.mlb.teamRoster,
+    player: state.mlb.currentPlayer,
     team: state.mlb.selectedTeam,
     showCard: state.mlb.cardToggle
 })

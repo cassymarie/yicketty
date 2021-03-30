@@ -1,0 +1,11 @@
+.game-score {
+    align-items: center;
+    text-align: center;
+    max-height: 4em;
+    width: initial;
+    margin: auto;
+}
+
+.game-field {
+    
+}
