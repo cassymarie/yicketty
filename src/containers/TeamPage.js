@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Nav from 'react-bootstrap/Nav'
-
 import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer } from '../actions/MlbActionCreators.js'
+import { currentPage } from '../actions/AppActionCreators.js'
 
 import TeamRoster from './TeamRoster.js'
-// import PlayerCard from '../components/player/PlayerCard.js'
-// import Lineup from '../components/lineup/Lineup.js'
 import TeamHeader from '../components/mlb/TeamHeader.js'
-import Container from 'react-bootstrap/Container'
-// import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col'
+import { Container, Nav } from 'react-bootstrap'
+
 import '../teamPage.css'
 
 
 class TeamPage extends Component {
 
     componentDidMount(){
+        this.props.currentPage('team')
         const id = parseInt(this.props.match.params.id)
         this.props.setSelectedTeam(id)
         this.props.setTeamRoster(id)
@@ -25,6 +22,7 @@ class TeamPage extends Component {
     componentWillUnmount(){
         this.props.unSelectTeam()
         this.props.toggleCardOFF()
+        this.props.currentPage('')
     }
 
 
@@ -79,4 +77,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer })(TeamPage)
+export default connect(mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitcher, togglePitcherReset, resetPlayer, currentPage })(TeamPage)

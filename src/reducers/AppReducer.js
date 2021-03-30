@@ -1,14 +1,11 @@
-const initialAppState = {
-    navTitle: ''
-}
 
-const appReducer = (state=initialAppState, action) => {
+const AppReducer = (state={currentPage: 'home'}, action) => {
     switch (action.type){
-        case 'SET_NAV_TITLE':
-            return {...state, navTitle: action.payload }
+        case 'SET_PAGE':
+            return {...state, currentPage: action.payload}
         default: 
             return {...state}
     }
 }
 
-export default appReducer
+export default AppReducer

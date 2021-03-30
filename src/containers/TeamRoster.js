@@ -10,8 +10,6 @@ import { Row, Button, Accordion, Container, ButtonGroup, ListGroup } from 'react
 class TeamRoster extends Component {
 
   componentDidMount(){
-    // debugger
-    // this.props.setTeamRoster(this.props.team.id)
   }
 
   renderList = () => {

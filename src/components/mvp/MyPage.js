@@ -1,72 +1,78 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
-// import Lineup from '../lineup/Lineup.js'
+// import Login from '../login.js'
 import MyLineups from '../../containers/MyLineups.js'
 import NewLineupSection from '../../containers/NewLineupSection.js'
 import { getUserLineups, toggleExistingLineups, toggleNewLineup } from '../../actions/LineupActionCreators.js'
+import { currentPage } from '../../actions/AppActionCreators.js'
 import '../../lineup.css'
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Card from 'react-bootstrap/Card'
-import Accordian from 'react-bootstrap/Accordion'
+import { Container, Row, Card, Accordion } from 'react-bootstrap'
 import { ThreeDots } from 'react-bootstrap-icons'
 
 class MyPage extends Component {
 
-    componentDidMount(){
+    componentDidMount(){ 
+        this.props.currentPage('profile')
         this.props.getUserLineups()
         this.props.toggleExistingLineups()
     }
 
-    componentWillUnmount(){
-       
-    }
-
-
     render(){
-
         return(
-        <Container fluid className="my-page">
-            <Accordian defaultActiveKey="0">
+        <Container fluid className="my-page mlb-team-page">
+            <Accordion defaultActiveKey="0">
             <Card>
                 <Card.Header>
                 <Row>
                     <div className="main-title">My Lineups</div>
-                    <Accordian.Toggle eventKey="0" className="lineup-hdr-btn">
+                    <Accordion.Toggle eventKey="0" className="lineup-hdr-btn">
                         <ThreeDots className="lineup-hdr-btn" width="2em" height="2em" />
-                    </Accordian.Toggle>
+                    </Accordion.Toggle>
                 </Row>
                 </Card.Header>
-                <Accordian.Collapse eventKey="0">
+                <Accordion.Collapse eventKey="0">
                     <MyLineups />
-                </Accordian.Collapse>
+                </Accordion.Collapse>
             </Card>
             <Card>
             <Card.Header>
                 <Row>
                     <div className="main-title">Create New Lineup</div>
-                    <Accordian.Toggle eventKey="1" className="lineup-hdr-btn"  onClick={this.props.toggleNewLineup}>
+                    <Accordion.Toggle eventKey="1" className="lineup-hdr-btn"  onClick={this.props.toggleNewLineup}>
                         <ThreeDots className="lineup-hdr-btn" width="2em" height="2em" />
-                    </Accordian.Toggle>
+                    </Accordion.Toggle>
                 </Row>
                 </Card.Header>
-                <Accordian.Collapse eventKey="1">
+                <Accordion.Collapse eventKey="1">
                     <NewLineupSection />
-                </Accordian.Collapse>
+                </Accordion.Collapse>
             </Card>
-            </Accordian>
+            <Card>
+                <Card.Header>
+                    <Row>
+                        <div className="main-title">Yicketty Stats</div>
+                        <Accordion.Toggle eventKey="2" className="lineup-hdr-btn" >
+                            <ThreeDots className="lineup-hdr-btn" width="2em" height="2em" />
+                        </Accordion.Toggle>
+                    </Row>
+                </Card.Header>
+                <Accordion.Collapse eventKey="2">
+                    <div className="more-info"> Work in Progress...  Stats on games played</div>
+                </Accordion.Collapse>
+            </Card>
+            </Accordion>
         </Container>
         )        
     }
 
 }
 
-// const mapStateToProps = (state) => ({
-//     // roster: state.mlb.teamRoster,
-//     // team: state.mlb.selectedTeam
-// })
+const mapStateToProps = (state) => ({
+    user: state.user,
+    lineups: state.lineup.usersLineups,
+    app: state.app.currentPage
+})
 
-//mapStateToProps, { setTeamRoster, setSelectedTeam, unSelectTeam }
-export default connect(null, { getUserLineups, toggleExistingLineups, toggleNewLineup })(MyPage)
+
+export default connect(mapStateToProps, { getUserLineups, toggleExistingLineups, toggleNewLineup, currentPage })(MyPage)

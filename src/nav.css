@@ -12,4 +12,11 @@
 
 .nav-header {
     margin-bottom: 0em;
+    width: 100%;
+}
+
+.nav-page-label {
+    font-size: 1.8em;
+    color: white;
+    justify-content: flex-end;
 }

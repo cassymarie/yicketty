@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../baseballField.css'
 import Container from 'react-bootstrap/Container'
+import { currentPage } from '../actions/AppActionCreators.js'
 
 class BaseballField extends Component {
+
+    componentDidMount(){
+        this.props.currentPage('game')
+    }
 
     render(){
         return(
@@ -42,4 +47,4 @@ class BaseballField extends Component {
     }
 }
 
-export default connect()(BaseballField);
+export default connect(null, { currentPage })(BaseballField);

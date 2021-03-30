@@ -5,12 +5,10 @@ import { setTeamRoster, setSelectedTeam, unSelectTeam, toggleCardOFF, togglePitc
 
 import LineupTeamForm from '../components/lineup/LineupTeamForm.js'
 import LineupForm from '../components/lineup/LineupForm.js'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-
 import TeamRoster from './TeamRoster.js'
 import '../teamPage.css'
+
+import { Container, Row, Col } from 'react-bootstrap'
 
 
 class NewLineupSection extends Component {

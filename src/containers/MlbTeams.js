@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import TeamCard from '../components/mlb/TeamCard.js';
-import  Container from 'react-bootstrap/Container'
-import  Row from 'react-bootstrap/Row'
-import  Col from 'react-bootstrap/Col'
+import TeamCard from '../components/mlb/TeamCard.js'
+import  {Container, Row, Col} from 'react-bootstrap'
+import { currentPage } from '../actions/AppActionCreators.js'
+
 
 class MlbTeams extends Component {
+
+  componentDidMount(){
+    this.props.currentPage('teams')
+  }
 
   teamsByLeague = (league) => {
     const leagueTeams = this.props.teams.filter(team => team.league === league)
@@ -57,4 +61,4 @@ const mapStateToProps = (state) => ({
     teams: state.mlb.teams
   })
 
-export default connect(mapStateToProps)(MlbTeams);
+export default connect(mapStateToProps, { currentPage } )(MlbTeams);

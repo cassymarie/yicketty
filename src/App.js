@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { getMlbTeams } from './actions/MlbActionCreators.js'
 import { autoLogin } from './actions/UserActionCreators.js'
 import MlbTeams from './containers/MlbTeams.js'
 import Home from './components/home.js'
+import Login from './components/login.js'
 import MyPage from './components/mvp/MyPage.js'
 import TeamPage from './containers/TeamPage.js'
-// import Login from './components/login.js'
 // import Container from 'react-bootstrap/Container'
 import BaseballField from './containers/BaseballField.js';
 
@@ -15,7 +15,7 @@ class App extends Component {
 
   componentDidMount(){
 
-    if (localStorage.token === 'undefined'){localStorage.clear()}
+  if (localStorage.token === 'undefined'){localStorage.clear()}
     
     localStorage.token && this.props.autoLogin()
     this.props.getMlbTeams()
@@ -23,22 +23,18 @@ class App extends Component {
 
   render() {
     return (
-      //, backgroundImage: `url('https://media.istockphoto.com/photos/baseball-background-picture-id96681767?k=6&m=96681767&s=612x612&w=0&h=CD5AmG38KKcREde_TC1__SFJYiTQoulNxdl1a-SwNIA=')`
-      //style={{backgroundColor:`${color}`}}
-          < >
-            {/* {this.props.user.id ?  */}
-              <Switch>
-                <Route path="/mlbteams/:id" component={TeamPage}/>
-                <Route path="/mlbteams/:id/pitchers" component={TeamPage}/>
-                <Route path="/mlbteams/:id/hitters" component={TeamPage}/>
-                <Route path="/mlbteams/:id/player-search" component={TeamPage}/>
-                <Route path="/mlbteams" component={MlbTeams}/>
-                <Route path="/yicketty" component={BaseballField}/>
-                <Route path="/mvp/lineups" component={MyPage}/>
-                <Route path="/" component={Home}/>
-              </Switch>
-              {/* <Login/> */}
-            {/* } */}
+          <>
+            <Switch>
+              <Route exact path="/mlbteams/:id" component={TeamPage}/>
+              <Route exact path="/mlbteams/:id/pitchers" component={TeamPage}/>
+              <Route exact path="/mlbteams/:id/hitters" component={TeamPage}/>
+              <Route exact path="/mlbteams/:id/player-search" component={TeamPage}/>
+              <Route exact path="/mlbteams" component={MlbTeams}/>
+              <Route exact path="/yicketty" component={BaseballField}/>
+              <Route exact path="/mvp/lineups" component={MyPage}/>
+              <Route exact path="/login">{ this.props.user.id ? <Redirect to="/mvp/lineups"/> : <Login /> }</Route>
+              <Route exact path="/" component={Home}/>
+            </Switch>
           </>
     );
   }

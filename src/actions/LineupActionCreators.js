@@ -13,7 +13,6 @@ export const getUserLineups = () => {
           .then(response => response.json())
           .then(lineups => {
             const stateLineups = []
-            
             const lineupPlayers = lineups.included.map(player => player.attributes)
                 lineups.data.forEach(row=>{
                     const roster = []
