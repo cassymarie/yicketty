@@ -32,7 +32,7 @@ class App extends Component {
               <Route exact path="/yicketty" component={GamePage}/>
               <Route exact path="/mvp/lineups" component={MyPage}/>
               <Route exact path="/login">{ this.props.user.id ? <Redirect to="/mvp/lineups"/> : <Login /> }</Route>
-              <Route exact path="/" component={Home}/>
+              <Route path="/" component={Home}/>
             </Switch>
           </>
     );

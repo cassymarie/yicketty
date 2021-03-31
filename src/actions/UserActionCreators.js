@@ -18,7 +18,6 @@ export const sendSignup = (userData) => {
         })
         .then(response => response.json())
         .then(response => {
-            debugger
             localStorage.token = response.token
             dispatch({ type: 'LOGIN_USER', payload: response.user.data.attributes })
         })

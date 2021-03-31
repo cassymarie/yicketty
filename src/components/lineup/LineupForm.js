@@ -23,7 +23,6 @@ const LineupForm = (props) => {
         e.stopPropagation()
         const btn = ( e.target.tagName === 'svg') ? e.target.parentNode.id : e.target.tagName === 'path' ? e.target.parentElement.parentElement.id : e.target.id
         const pos = btn.replace('-btn','')
-        debugger
         props.handleLineupChange(pos,null)
         props.availableRoster(props.lineup, props.roster)
     }

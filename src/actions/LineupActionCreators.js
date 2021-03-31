@@ -82,7 +82,6 @@ export const createLineupPlayers = (lineupId, lineupOrderArray) => {
         })
         .then(response => response.json())
         .then(player => { 
-            debugger
             lineupRoster.push(player)
         })
     })

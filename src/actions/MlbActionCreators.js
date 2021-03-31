@@ -14,7 +14,7 @@ export const clearImages = () => ({type: 'CLEAR_PLAYER_IMAGES'})
 
 export const filterRoster = (list) => ({type: 'FILTERED_ROSTER', payload: list})
 // export const availableRoster = (lineup) => {
-//   // debugger
+//   
 //   const arr = Object.values(lineup).filter(x => x !== null).map(x=>x.id)
   
 //   return({type: 'AVAILABLE_ROSTER', payload: arr})
@@ -71,7 +71,6 @@ export const getPlayerCareerStats = (id) => {
       .then(stats => {
         const playerStats = stats.stats
         const statsPayload = []
-        // debugger
         playerStats.forEach(stat => {if(stat){ Object.keys(stat).includes("player_id") ? 
               statsPayload.push(stat) : stat.forEach(trade => statsPayload.push(trade))
             }})
